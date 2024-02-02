@@ -1,0 +1,18 @@
+digraph "common-error" {
+  node [shape="box",style="rounded",fontname="Helvetica",fontsize="14"]
+  edge [fontsize="10",fontname="Helvetica"]
+
+  // Node Definitions:
+  "ltd.qubit:common-error:jar"[label=<<font point-size="10">ltd.qubit</font><br/>common-error>]
+  "ltd.qubit:common-annotation:jar"[label=<<font point-size="10">ltd.qubit</font><br/>common-annotation>]
+  "ltd.qubit:common-java:jar"[label=<<font point-size="10">ltd.qubit</font><br/>common-java>]
+  "ltd.qubit:common-model:jar"[label=<<font point-size="10">ltd.qubit</font><br/>common-model>]
+
+  // Edge Definitions:
+  "ltd.qubit:common-error:jar" -> "ltd.qubit:common-annotation:jar"
+  "ltd.qubit:common-java:jar" -> "ltd.qubit:common-annotation:jar"[style="dotted"]
+  "ltd.qubit:common-error:jar" -> "ltd.qubit:common-java:jar"
+  "ltd.qubit:common-model:jar" -> "ltd.qubit:common-annotation:jar"[style="dotted"]
+  "ltd.qubit:common-model:jar" -> "ltd.qubit:common-java:jar"[style="dotted"]
+  "ltd.qubit:common-error:jar" -> "ltd.qubit:common-model:jar"
+}
