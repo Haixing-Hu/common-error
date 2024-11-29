@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -17,6 +19,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class BusinessLogicException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = 4119326191506464723L;
 
   public BusinessLogicException(final ErrorCode code, final KeyValuePair... params) {

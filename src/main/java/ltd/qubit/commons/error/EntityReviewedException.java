@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -18,6 +20,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class EntityReviewedException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -724279655142624484L;
 
   private final String entity;

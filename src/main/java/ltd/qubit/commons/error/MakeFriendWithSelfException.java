@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * Thrown to indicate that the user try to make a friend with himself.
  *
@@ -15,6 +17,7 @@ package ltd.qubit.commons.error;
  */
 public class MakeFriendWithSelfException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 7318020832823881260L;
 
   public MakeFriendWithSelfException() {

@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * An exception thrown to indicate the expiration of verify code.
  *
@@ -15,6 +17,7 @@ package ltd.qubit.commons.error;
  */
 public class VerifyCodeExpiredException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -3445682897108257543L;
 
   public VerifyCodeExpiredException() {

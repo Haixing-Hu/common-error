@@ -68,5 +68,5 @@ public enum ErrorType {
   /**
    * 其他第三方错误。
    */
-  THIRD_PART_ERROR,
+  THIRD_PARTY_ERROR,
 }

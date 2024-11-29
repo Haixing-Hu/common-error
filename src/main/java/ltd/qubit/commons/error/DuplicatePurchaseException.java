@@ -8,10 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import ltd.qubit.commons.lang.LongUtils;
 import ltd.qubit.model.commons.CredentialInfo;
 import ltd.qubit.model.order.Buyer;
 import ltd.qubit.model.product.ProductInfo;
@@ -23,15 +22,24 @@ import ltd.qubit.model.product.ProductInfo;
  */
 public class DuplicatePurchaseException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 4393486077067411366L;
 
   private final Buyer buyer;
   private final ProductInfo product;
 
   public DuplicatePurchaseException(final Buyer buyer, final ProductInfo product) {
-    super(ErrorCode.DUPLICATE_PURCHASE, makeParams(buyer, product));
+    super(ErrorCode.DUPLICATE_PURCHASE);
     this.buyer = buyer;
     this.product = product;
+    this.addParam("buyer_name", buyer.getName());
+    this.addParam("buyer_mobile", buyer.getMobile());
+    final CredentialInfo credential = buyer.getCredential();
+    this.addParam("buyer_credential_type", credential == null ? null : credential.getType().name());
+    this.addParam("buyer_credential_number", credential == null ? null : credential.getNumber());
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
   }
 
   public Buyer getBuyer() {
@@ -42,21 +50,33 @@ public class DuplicatePurchaseException extends BusinessLogicException {
     return product;
   }
 
-  private static KeyValuePair[] makeParams(final Buyer buyer, final ProductInfo product) {
-    final List<KeyValuePair> params = new ArrayList<>();
-    params.add(new KeyValuePair("buyer_name", buyer.getName()));
-    params.add(new KeyValuePair("buyer_mobile", buyer.getMobile()));
+  public String getBuyerName() {
+    return buyer.getName();
+  }
+
+  public String getBuyerMobile() {
+    return buyer.getMobile() == null ? null : buyer.getMobile().toString();
+  }
+
+  public String getBuyerCredentialType() {
     final CredentialInfo credential = buyer.getCredential();
-    if (credential != null) {
-      params.add(new KeyValuePair("buyer_credential_type", credential.getType().name()));
-      params.add(new KeyValuePair("buyer_credential_number", credential.getNumber()));
-    } else {
-      params.add(new KeyValuePair("buyer_credential_type", null));
-      params.add(new KeyValuePair("buyer_credential_number", null));
-    }
-    params.add(new KeyValuePair("product_id", product.getId()));
-    params.add(new KeyValuePair("product_code", product.getCode()));
-    params.add(new KeyValuePair("product_name", product.getName()));
-    return params.toArray(new KeyValuePair[0]);
+    return (credential == null ? null : credential.getType().name());
+  }
+
+  public String getBuyerCredentialNumber() {
+    final CredentialInfo credential = buyer.getCredential();
+    return (credential == null ? null : credential.getNumber());
+  }
+
+  public String getProductId() {
+    return LongUtils.toString(product.getId());
+  }
+
+  public String getProductCode() {
+    return product.getCode();
+  }
+
+  public String getProductName() {
+    return product.getName();
   }
 }

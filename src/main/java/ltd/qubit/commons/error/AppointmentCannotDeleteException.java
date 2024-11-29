@@ -8,16 +8,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * 预约单删除异常。
  *
  * @author 王佳
  */
-public class AppointmentDeleteException extends BusinessLogicException {
+public class AppointmentCannotDeleteException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 3104633352054555682L;
 
-  public AppointmentDeleteException() {
+  public AppointmentCannotDeleteException() {
     super(ErrorCode.APPOINTMENT_CANNOT_DELETE);
   }
 }

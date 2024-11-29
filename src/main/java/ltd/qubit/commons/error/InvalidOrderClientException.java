@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 import ltd.qubit.model.product.ProductInfo;
 
@@ -18,6 +20,7 @@ import ltd.qubit.model.product.ProductInfo;
  */
 public class InvalidOrderClientException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -3414596639344085024L;
 
   private final Long orderId;

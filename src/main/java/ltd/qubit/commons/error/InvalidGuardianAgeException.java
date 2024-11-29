@@ -8,11 +8,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
-import ltd.qubit.model.Field;
+import ltd.qubit.commons.lang.StringUtils;
+import ltd.qubit.model.commons.CredentialInfo;
+import ltd.qubit.model.contact.Phone;
 import ltd.qubit.model.person.PersonInfo;
 
 /**
@@ -22,31 +22,42 @@ import ltd.qubit.model.person.PersonInfo;
  */
 public class InvalidGuardianAgeException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -1147861390993501153L;
 
   private final PersonInfo guardian;
 
   public InvalidGuardianAgeException(final PersonInfo guardian) {
-    super(ErrorCode.INVALID_GUARDIAN_AGE,
-        new KeyValuePair("guardian_name", guardian.getName()),
-        new KeyValuePair("guardian_mobile", guardian.getMobile()),
-        new KeyValuePair("guardian_credential_type",
-            guardian.getCredential() == null ? null : guardian.getCredential().getType()),
-        new KeyValuePair("guardian_credential_number",
-            guardian.getCredential() == null ? null : guardian.getCredential().getNumber()),
-        new KeyValuePair("guardian_birthday", guardian.getBirthday()));
+    super(ErrorCode.INVALID_GUARDIAN_AGE);
     this.guardian = guardian;
+    this.addParam("guardian_name", guardian.getName());
+    this.addParam("guardian_mobile", guardian.getMobile());
+    final CredentialInfo credential = guardian.getCredential();
+    this.addParam("guardian_credential_type", credential == null ? null : credential.getType());
+    this.addParam("guardian_credential_number", credential == null ? null : credential.getNumber());
+    this.addParam("guardian_birthday", guardian.getBirthday());
   }
 
   public PersonInfo getGuardian() {
     return guardian;
   }
 
-  private static KeyValuePair[] makeParams(final PersonInfo guardian) {
-    final List<KeyValuePair> params = new ArrayList<>();
-    params.add(new KeyValuePair(Field.FULLNAME, guardian.getName()));
-    params.add(new KeyValuePair(Field.CREDENTIAL, guardian.getCredential()));
-    params.add(new KeyValuePair(Field.BIRTHDAY, guardian.getBirthday()));
-    return params.toArray(new KeyValuePair[0]);
+  public String getGuardianName() {
+    return guardian.getName();
+  }
+
+  public String getGuardianMobile() {
+    final Phone mobile = guardian.getMobile();
+    return mobile == null ? null : mobile.toString();
+  }
+
+  public String getGuardianCredentialType() {
+    final CredentialInfo credential = guardian.getCredential();
+    return credential == null ? null : StringUtils.toString(credential.getType());
+  }
+
+  public String getGuardianCredentialNumber() {
+    final CredentialInfo credential = guardian.getCredential();
+    return credential == null ? null : credential.getNumber();
   }
 }

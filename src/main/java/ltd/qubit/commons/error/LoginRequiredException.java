@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * Indicates that the operation should be performed by logged-in users.
  *
@@ -15,6 +17,7 @@ package ltd.qubit.commons.error;
  */
 public class LoginRequiredException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = 5527219095032159842L;
 
   public LoginRequiredException() {

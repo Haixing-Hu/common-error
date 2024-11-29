@@ -8,12 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
-import ltd.qubit.model.Field;
-import ltd.qubit.model.util.Info;
+import ltd.qubit.model.product.ProductInfo;
 
 /**
  * 表示一个订单中出现重复的商品。
@@ -22,24 +19,32 @@ import ltd.qubit.model.util.Info;
  */
 public class DuplicateProductException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 4281230450595374666L;
 
-  private final Info product;
+  private final ProductInfo product;
 
-  public DuplicateProductException(final Info product) {
-    super(ErrorCode.DUPLICATE_PRODUCT, makeParams(product));
+  public DuplicateProductException(final ProductInfo product) {
+    super(ErrorCode.DUPLICATE_PRODUCT);
     this.product = product;
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
   }
 
-  public Info getProduct() {
+  public ProductInfo getProduct() {
     return product;
   }
 
-  private static KeyValuePair[] makeParams(final Info product) {
-    final List<KeyValuePair> params = new ArrayList<>();
-    params.add(new KeyValuePair(Field.PRODUCT_ID, product.getId()));
-    params.add(new KeyValuePair(Field.PRODUCT_CODE, product.getCode()));
-    params.add(new KeyValuePair(Field.PRODUCT_NAME, product.getName()));
-    return params.toArray(new KeyValuePair[0]);
+  public Long getProductId() {
+    return product.getId();
+  }
+
+  public String getProductCode() {
+    return product.getCode();
+  }
+
+  public String getProductName() {
+    return product.getName();
   }
 }

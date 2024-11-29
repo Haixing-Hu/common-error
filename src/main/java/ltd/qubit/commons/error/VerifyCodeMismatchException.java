@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * An exception thrown to indicate the mismatch of verify code.
  *
@@ -15,6 +17,7 @@ package ltd.qubit.commons.error;
  */
 public class VerifyCodeMismatchException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -1767662246498278604L;
 
   public VerifyCodeMismatchException() {

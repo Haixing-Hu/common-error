@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * Thrown to indicate that the file format is invalid.
@@ -17,13 +17,22 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class InvalidFileFormatException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = -3517828093133105010L;
 
+  private final String reason;
+
   public InvalidFileFormatException() {
-    super(ErrorType.IO_ERROR, ErrorCode.INVALID_FILE_FORMAT);
+    this("");
   }
 
   public InvalidFileFormatException(final String message) {
-    super(ErrorType.IO_ERROR, ErrorCode.INVALID_FILE_FORMAT, new KeyValuePair("message", message));
+    super(ErrorType.IO_ERROR, ErrorCode.INVALID_FILE_FORMAT);
+    this.reason = message;
+    this.addParam("reason", message);
+  }
+
+  public String getReason() {
+    return reason;
   }
 }

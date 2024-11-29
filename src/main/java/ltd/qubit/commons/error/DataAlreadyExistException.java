@@ -8,15 +8,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
+import ltd.qubit.commons.reflect.FieldUtils;
+import ltd.qubit.commons.reflect.impl.GetterMethod;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate that a field value does not exist in the database.
+ * 表示指定的对象已存在。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class DataAlreadyExistException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -7946725149423667129L;
 
   private final String entity;
@@ -24,34 +29,48 @@ public class DataAlreadyExistException extends BusinessLogicException {
   private final Object value;
 
   public DataAlreadyExistException(final Class<?> entityType, final String key,
+      final Object value) {
+    this(entityType, key, value, new KeyValuePair[0]);
+  }
+
+  public DataAlreadyExistException(final Class<?> entityType, final String key,
       final Object value, final KeyValuePair... params) {
-    this(getEntityName(entityType), getFieldName(key), value, params);
-  }
-
-  private DataAlreadyExistException(final String entity, final String key,
-      final Object value, final KeyValuePair[] params) {
-    super(ErrorCode.ALREADY_EXIST, buildParams(entity, key, value, params));
-    this.entity = entity;
-    this.key = key;
+    super(ErrorCode.ALREADY_EXIST);
+    this.entity = getEntityName(entityType);
+    this.key = getFieldName(key);
     this.value = value;
+    this.addParam(new KeyValuePair("entity", this.entity));
+    this.addParam(new KeyValuePair("key", this.key));
+    this.addParam(new KeyValuePair("value", this.value));
+    this.addParams(params);
   }
 
-  private static KeyValuePair[] buildParams(final String entity,
-      final String key, final Object value, final KeyValuePair[] params) {
-    if (params == null || params.length == 0) {
-      return new KeyValuePair[]{
-          new KeyValuePair("entity", entity),
-          new KeyValuePair("key", key),
-          new KeyValuePair("value", value),
-      };
-    } else {
-      final KeyValuePair[] result = new KeyValuePair[3 + params.length];
-      result[0] = new KeyValuePair("entity", entity.toLowerCase());
-      result[1] = new KeyValuePair("key", key);
-      result[2] = new KeyValuePair("value", value);
-      System.arraycopy(params, 0, result, 2, params.length);
-      return result;
-    }
+  public <T, P> DataAlreadyExistException(final Class<T> entityType,
+      final GetterMethod<T, P> keyGetter, final P value) {
+    this(entityType, FieldUtils.getFieldName(entityType, keyGetter),
+        value, new KeyValuePair[0]);
+  }
+
+  public <T, P> DataAlreadyExistException(final Class<T> entityType,
+      final GetterMethod<T, P> keyGetter, final P value,
+      final KeyValuePair... params) {
+    this(entityType, FieldUtils.getFieldName(entityType, keyGetter),
+        value, params);
+  }
+
+  @SuppressWarnings("unchecked")
+  public <T, P> DataAlreadyExistException(final T obj, final GetterMethod<T, P> keyGetter) {
+    this(obj.getClass(),
+        FieldUtils.getFieldName((Class<T>) obj.getClass(), keyGetter),
+        keyGetter.invoke(obj),
+        new KeyValuePair[0]);
+  }
+
+  @SuppressWarnings("unchecked")
+  public <T, P> DataAlreadyExistException(final T obj,
+      final GetterMethod<T, P> keyGetter, final KeyValuePair... params) {
+    this(obj.getClass(), FieldUtils.getFieldName((Class<T>) obj.getClass(), keyGetter),
+        keyGetter.invoke(obj), params);
   }
 
   public String getEntity() {

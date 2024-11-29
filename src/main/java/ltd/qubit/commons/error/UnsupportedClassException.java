@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -17,6 +19,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class UnsupportedClassException extends ServerInternalException {
 
+  @Serial
   private static final long serialVersionUID = 3558672511597342482L;
 
   public UnsupportedClassException() {

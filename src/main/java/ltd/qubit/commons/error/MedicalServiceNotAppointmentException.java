@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * 医疗服务项目未预约。
  *
@@ -15,6 +17,7 @@ package ltd.qubit.commons.error;
  */
 public class MedicalServiceNotAppointmentException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 1796296442775916389L;
 
   public MedicalServiceNotAppointmentException() {

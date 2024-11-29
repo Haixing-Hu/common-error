@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -18,6 +20,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class OppositeIsSelfException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -3020192983459599035L;
 
   private final String entity;

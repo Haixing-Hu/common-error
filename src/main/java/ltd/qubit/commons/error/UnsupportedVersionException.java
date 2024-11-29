@@ -8,8 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.Version;
-import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
  * An exception thrown to indicate the specified version is not supported.
@@ -18,18 +19,26 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class UnsupportedVersionException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -476273164096743622L;
 
+  private final String version;
+
   public UnsupportedVersionException() {
-    super(ErrorCode.UNSUPPORTED_VERSION);
+    this("");
   }
 
   public UnsupportedVersionException(final Version version) {
-    super(ErrorCode.UNSUPPORTED_VERSION,
-        new KeyValuePair("version", version.toString()));
+    this(version.toString());
   }
 
   public UnsupportedVersionException(final String version) {
-    super(ErrorCode.UNSUPPORTED_VERSION, new KeyValuePair("version", version));
+    super(ErrorCode.UNSUPPORTED_VERSION);
+    this.version = version;
+    this.addParam("version", version);
+  }
+
+  public String getVersion() {
+    return version;
   }
 }

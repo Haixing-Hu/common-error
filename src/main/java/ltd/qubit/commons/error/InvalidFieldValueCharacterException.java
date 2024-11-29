@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * The exception thrown to indicate that the characters of the value of a field
@@ -18,17 +18,18 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class InvalidFieldValueCharacterException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = 8790807160943844485L;
 
   private final String field;
   private final String value;
 
   public InvalidFieldValueCharacterException(final String property, final String value) {
-    super(ErrorType.REQUEST_ERROR, ErrorCode.INVALID_FIELD_VALUE_CHARACTER,
-        new KeyValuePair("field", getFieldName(property)),
-        new KeyValuePair("value", value));
+    super(ErrorType.REQUEST_ERROR, ErrorCode.INVALID_FIELD_VALUE_CHARACTER);
     this.field = getFieldName(property);
     this.value = value;
+    this.addParam("field", this.field);
+    this.addParam("value", this.value);
   }
 
   /**

@@ -8,8 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
 import ltd.qubit.model.commons.CredentialInfo;
+import ltd.qubit.model.commons.CredentialType;
 import ltd.qubit.model.person.Gender;
 
 /**
@@ -22,30 +22,38 @@ public class MismatchGenderException extends BusinessLogicException {
   private static final long serialVersionUID = -7285953695851149215L;
 
   private final CredentialInfo credential;
-  private final Gender expected;
-  private final Gender actual;
+  private final Gender expectedGender;
+  private final Gender actualGender;
 
-  public MismatchGenderException(final CredentialInfo credential, final Gender expected,
-          final Gender actual) {
-    super(ErrorCode.MISMATCH_GENDER,
-        new KeyValuePair("credential_type", credential.getType()),
-        new KeyValuePair("credential_number", credential.getNumber()),
-        new KeyValuePair("expected_gender", expected),
-        new KeyValuePair("actual_gender", actual));
+  public MismatchGenderException(final CredentialInfo credential,
+      final Gender expectedGender, final Gender actualGender) {
+    super(ErrorCode.MISMATCH_GENDER);
     this.credential = credential;
-    this.expected = expected;
-    this.actual = actual;
+    this.expectedGender = expectedGender;
+    this.actualGender = actualGender;
+    this.addParam("credential_type", credential.getType());
+    this.addParam("credential_number", credential.getNumber());
+    this.addParam("expected_gender", expectedGender);
+    this.addParam("actual_gender", actualGender);
   }
 
   public CredentialInfo getCredential() {
     return credential;
   }
 
-  public Gender getExpected() {
-    return expected;
+  public CredentialType getCredentialType() {
+    return credential.getType();
   }
 
-  public Gender getActual() {
-    return actual;
+  public String getCredentialNumber() {
+    return credential.getNumber();
+  }
+
+  public Gender getExpectedGender() {
+    return expectedGender;
+  }
+
+  public Gender getActualGender() {
+    return actualGender;
   }
 }

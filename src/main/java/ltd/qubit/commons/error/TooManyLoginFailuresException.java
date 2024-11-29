@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -17,24 +19,26 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class TooManyLoginFailuresException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = -885058974515170735L;
 
   private final String username;
-  private final long expiredSeconds;
+  private final long duration;
 
   public TooManyLoginFailuresException(final String username, final long expiredSeconds) {
-    super(ErrorType.AUTHENTICATION_ERROR, ErrorCode.TOO_MANY_LOGIN_FAILURES,
+    super(ErrorType.AUTHENTICATION_ERROR,
+        ErrorCode.TOO_MANY_LOGIN_FAILURES,
         new KeyValuePair("username", username),
         new KeyValuePair("duration", expiredSeconds));
     this.username  = username;
-    this.expiredSeconds = expiredSeconds;
+    this.duration = expiredSeconds;
   }
 
   public final String getUsername() {
     return username;
   }
 
-  public long getExpiredSeconds() {
-    return expiredSeconds;
+  public long getDuration() {
+    return duration;
   }
 }

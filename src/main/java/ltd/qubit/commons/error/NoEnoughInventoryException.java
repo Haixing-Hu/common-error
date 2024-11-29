@@ -8,7 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
 import ltd.qubit.model.util.Info;
 
 /**
@@ -18,6 +19,7 @@ import ltd.qubit.model.util.Info;
  */
 public class NoEnoughInventoryException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 1053966567796966131L;
 
   private final Info product;
@@ -26,19 +28,31 @@ public class NoEnoughInventoryException extends BusinessLogicException {
 
   public NoEnoughInventoryException(final Info product,
       final Integer expected, final Integer actual) {
-    super(ErrorCode.NO_ENOUGH_INVENTORY,
-        new KeyValuePair("product_id", product.getId()),
-        new KeyValuePair("product_code", product.getCode()),
-        new KeyValuePair("product_name", product.getName()),
-        new KeyValuePair("expected", expected),
-        new KeyValuePair("actual", actual));
+    super(ErrorCode.NO_ENOUGH_INVENTORY);
     this.product = product;
     this.expected = expected;
     this.actual = actual;
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
+    this.addParam("expected", expected);
+    this.addParam("actual", actual);
   }
 
   public Info getProduct() {
     return product;
+  }
+
+  public Long getProductId() {
+    return product.getId();
+  }
+
+  public String getProductCode() {
+    return product.getCode();
+  }
+
+  public String getProductName() {
+    return product.getName();
   }
 
   public Integer getExpected() {

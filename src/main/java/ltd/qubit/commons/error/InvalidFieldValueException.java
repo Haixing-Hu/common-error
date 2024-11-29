@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * The exception thrown to indicate that the value of a field is invalid.
@@ -17,17 +17,18 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class InvalidFieldValueException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -9185610086465952665L;
 
   private final String field;
   private final Object value;
 
   public InvalidFieldValueException(final String property, final Object value) {
-    super(ErrorCode.INVALID_FIELD_VALUE,
-        new KeyValuePair("field", getFieldName(property)),
-        new KeyValuePair("value", value));
+    super(ErrorCode.INVALID_FIELD_VALUE);
     this.field = getFieldName(property);
     this.value = value;
+    this.addParam("field", this.field);
+    this.addParam("value", this.value);
   }
 
   /**

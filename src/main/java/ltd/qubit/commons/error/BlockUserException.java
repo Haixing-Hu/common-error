@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * Thrown to indicate that the current user blocks another user.
  *
@@ -15,9 +17,18 @@ package ltd.qubit.commons.error;
  */
 public class BlockUserException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 2981344543870559115L;
 
-  public BlockUserException() {
+  private final String username;
+
+  public BlockUserException(final String username) {
     super(ErrorCode.BLOCK_USER);
+    this.username = username;
+    this.addParam("username", username);
+  }
+
+  public String getUsername() {
+    return username;
   }
 }

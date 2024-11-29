@@ -8,11 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
-import ltd.qubit.model.Field;
 import ltd.qubit.model.contact.Phone;
 
 /**
@@ -22,38 +19,33 @@ import ltd.qubit.model.contact.Phone;
  */
 public class MismatchMobileException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -3171777375509325949L;
 
   private final String name;
-  private final Phone expected;
-  private final Phone actual;
+  private final Phone expectedMobile;
+  private final Phone actualMobile;
 
-  public MismatchMobileException(final String name, final Phone expected,
-      final Phone actual) {
-    super(ErrorCode.MISMATCH_MOBILE, makeParams(name, expected, actual));
+  public MismatchMobileException(final String name, final Phone expectedMobile,
+      final Phone actualMobile) {
+    super(ErrorCode.MISMATCH_MOBILE);
     this.name = name;
-    this.expected = expected;
-    this.actual = actual;
+    this.expectedMobile = expectedMobile;
+    this.actualMobile = actualMobile;
+    this.addParam("name", name);
+    this.addParam("expected_mobile", expectedMobile);
+    this.addParam("actual_mobile", actualMobile);
   }
 
   public String getName() {
     return name;
   }
 
-  public Phone getExpected() {
-    return expected;
+  public Phone getExpectedMobile() {
+    return expectedMobile;
   }
 
-  public Phone getActual() {
-    return actual;
-  }
-
-  private static KeyValuePair[] makeParams(final String name,
-      final Phone expected, final Phone actual) {
-    final List<KeyValuePair> params = new ArrayList<>();
-    params.add(new KeyValuePair(Field.NAME, name));
-    params.add(new KeyValuePair(Field.EXPECTED, expected));
-    params.add(new KeyValuePair(Field.ACTUAL, actual));
-    return params.toArray(new KeyValuePair[0]);
+  public Phone getActualMobile() {
+    return actualMobile;
   }
 }

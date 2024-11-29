@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * Thrown to indicate an entity was marked as inactive.
@@ -17,6 +17,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class EntityInactiveException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 170359584234170968L;
 
   private final String entity;
@@ -25,18 +26,18 @@ public class EntityInactiveException extends BusinessLogicException {
 
   public EntityInactiveException(final Class<?> entityType,
       final String key, final Object value) {
-    this(getEntityName(entityType), getFieldName(key), value);
+    this(entityType.getSimpleName(), key, value);
   }
 
-  private EntityInactiveException(final String entity, final String key,
+  public EntityInactiveException(final String entity, final String key,
       final Object value) {
-    super(ErrorCode.INACTIVE,
-        new KeyValuePair("entity", entity),
-        new KeyValuePair("key", key),
-        new KeyValuePair("value", value));
-    this.entity = entity;
-    this.key = key;
+    super(ErrorCode.INACTIVE);
+    this.entity = getEntityName(entity);
+    this.key = getFieldName(key);
     this.value = value;
+    this.addParam("entity", this.entity);
+    this.addParam("key", this.key);
+    this.addParam("value", this.value);
   }
 
   public String getEntity() {

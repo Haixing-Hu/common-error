@@ -8,9 +8,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.reflect.FieldUtils;
 import ltd.qubit.commons.reflect.impl.GetterMethod;
-import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
  * Thrown to indicate that a field value is out of its allowed range.
@@ -19,14 +20,15 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class FieldValueOutOfRangeException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -4510924126536171314L;
 
   private final String field;
 
   public FieldValueOutOfRangeException(final String property) {
-    super(ErrorCode.FIELD_OUT_OF_RANGE,
-        new KeyValuePair("field", getFieldName(property)));
+    super(ErrorCode.FIELD_OUT_OF_RANGE);
     this.field = getFieldName(property);
+    this.addParam("field", this.field);
   }
 
   public <T, P> FieldValueOutOfRangeException(final Class<T> type,

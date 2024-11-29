@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * The exception thrown to indicate that a friendship already exists.
  *
@@ -15,9 +17,18 @@ package ltd.qubit.commons.error;
  */
 public class FriendExistException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -4988788314886836289L;
 
-  public FriendExistException() {
+  private final String friendName;
+
+  public FriendExistException(final String friendName) {
     super(ErrorCode.FRIEND_EXIST);
+    this.friendName = friendName;
+    this.addParam("field_name", friendName);
+  }
+
+  public String getFriendName() {
+    return friendName;
   }
 }

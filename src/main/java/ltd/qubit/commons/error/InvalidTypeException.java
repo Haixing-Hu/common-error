@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * 表示实体类型错误。
@@ -17,37 +17,38 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class InvalidTypeException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -123788747327732451L;
 
   private final String entity;
-  private final String expected;
-  private final String actual;
+  private final String expectedType;
+  private final String actualType;
 
   public InvalidTypeException(final Class<?> entityType,
       final Enum<?> expectedType, final Enum<?> actualType) {
     this(getEntityName(entityType), expectedType.name(), actualType.name());
   }
 
-  private InvalidTypeException(final String entity, final String expected,
-      final String actual) {
-    super(ErrorCode.INVALID_TYPE,
-        new KeyValuePair("entity", entity),
-        new KeyValuePair("expected_type", expected),
-        new KeyValuePair("actual_type", actual));
+  private InvalidTypeException(final String entity, final String expectedType,
+      final String actualType) {
+    super(ErrorCode.INVALID_TYPE);
     this.entity = entity;
-    this.expected = expected;
-    this.actual = actual;
+    this.expectedType = expectedType;
+    this.actualType = actualType;
+    this.addParam("entity", entity);
+    this.addParam("expected_type", expectedType);
+    this.addParam("actual_type", actualType);
   }
 
   public final String getEntity() {
     return entity;
   }
 
-  public final String getExpected() {
-    return expected;
+  public final String getExpectedType() {
+    return expectedType;
   }
 
-  public final String getActual() {
-    return actual;
+  public final String getActualType() {
+    return actualType;
   }
 }

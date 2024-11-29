@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * 表示姓名不匹配。
@@ -17,24 +17,25 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class MismatchPersonNameException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 5970828760534220946L;
 
-  private final String expected;
-  private final String actual;
+  private final String expectedName;
+  private final String actualName;
 
-  public MismatchPersonNameException(final String expected, final String actual) {
-    super(ErrorCode.MISMATCH_PERSON_NAME,
-        new KeyValuePair("expected_name", expected),
-        new KeyValuePair("actual_name", actual));
-    this.expected = expected;
-    this.actual = actual;
+  public MismatchPersonNameException(final String expectedName, final String actualName) {
+    super(ErrorCode.MISMATCH_PERSON_NAME);
+    this.expectedName = expectedName;
+    this.actualName = actualName;
+    this.addParam("expected_name", expectedName);
+    this.addParam("actual_name", actualName);
   }
 
-  public String getExpected() {
-    return expected;
+  public String getExpectedName() {
+    return expectedName;
   }
 
-  public String getActual() {
-    return actual;
+  public String getActualName() {
+    return actualName;
   }
 }

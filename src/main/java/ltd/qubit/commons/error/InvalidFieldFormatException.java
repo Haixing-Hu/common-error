@@ -8,12 +8,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
 import java.util.HashMap;
 import java.util.Map;
 
 import ltd.qubit.commons.reflect.FieldUtils;
 import ltd.qubit.commons.reflect.impl.GetterMethod;
-import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
  * The exception thrown to indicate that the format of a field is invalid.
@@ -22,6 +22,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class InvalidFieldFormatException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 2423251503350099649L;
 
   private static final Map<String, ErrorCode> ERROR_CODE_MAP;
@@ -39,11 +40,11 @@ public class InvalidFieldFormatException extends BusinessLogicException {
   private final Object value;
 
   public InvalidFieldFormatException(final String property, final Object value) {
-    super(getErrorCode(property),
-        new KeyValuePair("field", getFieldName(property)),
-        new KeyValuePair("value", value));
+    super(getErrorCode(property));
     this.field = getFieldName(property);
     this.value = value;
+    this.addParam("field", this.field);
+    this.addParam("value", this.value);
   }
 
   public <T, P> InvalidFieldFormatException(final Class<T> type,

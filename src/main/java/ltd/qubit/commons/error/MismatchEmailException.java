@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * 表示电子邮箱不匹配。
@@ -17,32 +17,33 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class MismatchEmailException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -415242668412153893L;
 
   private final String name;
-  private final String expected;
-  private final String actual;
+  private final String expectedEmail;
+  private final String actualEmail;
 
-  public MismatchEmailException(final String name, final String expected,
-          final String actual) {
-    super(ErrorCode.MISMATCH_EMAIL,
-        new KeyValuePair("name", name),
-        new KeyValuePair("expected_email", expected),
-        new KeyValuePair("actual_email", actual));
+  public MismatchEmailException(final String name, final String expectedEmail,
+          final String actualEmail) {
+    super(ErrorCode.MISMATCH_EMAIL);
     this.name = name;
-    this.expected = expected;
-    this.actual = actual;
+    this.expectedEmail = expectedEmail;
+    this.actualEmail = actualEmail;
+    this.addParam("name", name);
+    this.addParam("expected_email", expectedEmail);
+    this.addParam("actual_email", actualEmail);
   }
 
   public String getName() {
     return name;
   }
 
-  public String getExpected() {
-    return expected;
+  public String getExpectedEmail() {
+    return expectedEmail;
   }
 
-  public String getActual() {
-    return actual;
+  public String getActualEmail() {
+    return actualEmail;
   }
 }

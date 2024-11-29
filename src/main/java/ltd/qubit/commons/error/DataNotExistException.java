@@ -8,6 +8,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
+import ltd.qubit.commons.reflect.FieldUtils;
+import ltd.qubit.commons.reflect.impl.GetterMethod;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -17,6 +21,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class DataNotExistException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -7946725149423667129L;
 
   private final String entity;
@@ -30,28 +35,37 @@ public class DataNotExistException extends BusinessLogicException {
 
   public DataNotExistException(final Class<?> entityType, final String key,
       final Object value, final KeyValuePair... params) {
-    super(ErrorCode.NOT_EXIST, buildParams(entityType, key, value, params));
+    super(ErrorCode.NOT_EXIST);
     this.entity = getEntityName(entityType);
     this.key = getFieldName(key);
     this.value = value;
+    this.addParam(new KeyValuePair("entity", this.entity));
+    this.addParam(new KeyValuePair("key", this.key));
+    this.addParam(new KeyValuePair("value", this.value));
+    this.addParams(params);
   }
 
-  private static KeyValuePair[] buildParams(final Class<?> entityType,
-      final String key, final Object value, final KeyValuePair[] params) {
-    if (params == null || params.length == 0) {
-      return new KeyValuePair[]{
-          new KeyValuePair("entity", getEntityName(entityType)),
-          new KeyValuePair("key", getFieldName(key)),
-          new KeyValuePair("value", value),
-      };
-    } else {
-      final KeyValuePair[] result = new KeyValuePair[3 + params.length];
-      result[0] = new KeyValuePair("entity", getEntityName(entityType));
-      result[1] = new KeyValuePair("key", getFieldName(key));
-      result[2] = new KeyValuePair("value", value);
-      System.arraycopy(params, 0, result, 3, params.length);
-      return result;
-    }
+  public <T, P> DataNotExistException(final Class<T> entityType,
+      final GetterMethod<T, P> keyGetter,
+      final P value) {
+    this(entityType, FieldUtils.getFieldName(entityType, keyGetter),
+        value, new KeyValuePair[0]);
+  }
+
+  public <T, P> DataNotExistException(final Class<T> entityType,
+      final GetterMethod<T, P> keyGetter,
+      final P value,
+      final KeyValuePair... params) {
+    this(entityType, FieldUtils.getFieldName(entityType, keyGetter),
+        value, params);
+  }
+
+  @SuppressWarnings("unchecked")
+  public <T, P> DataNotExistException(final T obj, final GetterMethod<T, P> keyGetter) {
+    this(obj.getClass(),
+        FieldUtils.getFieldName((Class<T>) obj.getClass(), keyGetter),
+        keyGetter.invoke(obj),
+        new KeyValuePair[0]);
   }
 
   public String getEntity() {

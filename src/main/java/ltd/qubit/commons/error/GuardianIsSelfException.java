@@ -8,7 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
+import ltd.qubit.commons.lang.StringUtils;
 import ltd.qubit.model.commons.CredentialInfo;
 
 /**
@@ -19,6 +21,7 @@ import ltd.qubit.model.commons.CredentialInfo;
  */
 public class GuardianIsSelfException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 8864150248009427606L;
 
   private final Long id;
@@ -27,14 +30,14 @@ public class GuardianIsSelfException extends BusinessLogicException {
 
   public GuardianIsSelfException(final Long id, final String name,
       final CredentialInfo credential) {
-    super(ErrorCode.GUARDIAN_IS_SELF,
-        new KeyValuePair("id", id),
-        new KeyValuePair("name", name),
-        new KeyValuePair("credential_type", credential.getType()),
-        new KeyValuePair("credential_number", credential.getNumber()));
+    super(ErrorCode.GUARDIAN_IS_SELF);
     this.id = id;
     this.name = name;
     this.credential = credential;
+    this.addParam("id", id);
+    this.addParam("name", name);
+    this.addParam("credential_type", credential.getType());
+    this.addParam("credential_number", credential.getNumber());
   }
 
   public Long getId() {
@@ -47,5 +50,13 @@ public class GuardianIsSelfException extends BusinessLogicException {
 
   public CredentialInfo getCredential() {
     return credential;
+  }
+
+  public String getCredentialType() {
+    return StringUtils.toString(credential.getType());
+  }
+
+  public String getCredentialNumber() {
+    return credential.getNumber();
   }
 }

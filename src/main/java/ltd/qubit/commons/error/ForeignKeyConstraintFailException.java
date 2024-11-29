@@ -8,8 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.sql.DaoOperation;
-import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
  * Thrown to indicate the failure of a foreign key constraint.
@@ -18,6 +19,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class ForeignKeyConstraintFailException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = - 4781962031198705900L;
 
   private final DaoOperation operation;
@@ -28,12 +30,15 @@ public class ForeignKeyConstraintFailException extends BusinessLogicException {
   public ForeignKeyConstraintFailException(final DaoOperation operation,
       final String property, final String referenceEntity,
       final String referenceField) {
-    super(getErrorCodeImpl(operation),
-          getErrorParamsImpl(operation, property, referenceEntity, referenceField));
+    super(getErrorCodeImpl(operation));
     this.operation = operation;
     this.field = getFieldName(property);
     this.referenceEntity = getEntityName(referenceEntity);
     this.referenceField = getFieldName(referenceField);
+    this.addParam("operation", this.operation);
+    this.addParam("field", this.field);
+    this.addParam("reference_entity", this.referenceEntity);
+    this.addParam("reference_field", this.referenceField);
   }
 
   private static ErrorCode getErrorCodeImpl(final DaoOperation operation) {
@@ -45,36 +50,6 @@ public class ForeignKeyConstraintFailException extends BusinessLogicException {
         return ErrorCode.DELETE_REFERENCED_FOREIGN_KEY;
     }
   }
-
-  private static KeyValuePair[] getErrorParamsImpl(final DaoOperation operation,
-      final String field, final String referenceEntity,
-      final String referenceField) {
-    switch (operation) {
-      case ADD_OR_UPDATE:
-        return new KeyValuePair[]{
-            new KeyValuePair("field", field.toLowerCase()),
-            new KeyValuePair("reference_entity", referenceEntity.toLowerCase()),
-            new KeyValuePair("reference_field", referenceField.toLowerCase())
-        };
-      case DELETE:
-      default:
-        return new KeyValuePair[]{
-            new KeyValuePair("reference_field", referenceField.toLowerCase())
-        };
-    }
-  }
-
-  //  public ForeignKeyConstraintFailException(final DaoOperation operation,
-  //      final String field, final String referenceEntity,
-  //      final String referenceField, final Throwable cause) {
-  //    super("Cannot perform " + operation + " operation. The foreign key '"
-  //        + field + "' referenced from '" + referenceEntity + "." + referenceField
-  //        + "' failed.");
-  //    this.operation = operation;
-  //    this.field = field;
-  //    this.referenceEntity = referenceEntity;
-  //    this.referenceField = referenceField;
-  //  }
 
   public DaoOperation getOperation() {
     return operation;

@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.reflect.FieldUtils;
 import ltd.qubit.commons.reflect.impl.GetterMethod;
 import ltd.qubit.commons.util.pair.KeyValuePair;
@@ -19,6 +21,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class EntityDeletedException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = - 4862483627407054307L;
 
   private final String entity;

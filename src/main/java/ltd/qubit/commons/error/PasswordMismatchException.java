@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -17,6 +19,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class PasswordMismatchException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = 6497054624698434844L;
 
   private final String username;

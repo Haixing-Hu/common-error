@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * Thrown to indicate an entity was marked as disabled.
@@ -17,6 +17,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class EntityDisabledException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 2209357679589045163L;
 
   private final String entity;
@@ -30,12 +31,13 @@ public class EntityDisabledException extends BusinessLogicException {
 
   private EntityDisabledException(final String entity, final String key,
       final Object value) {
-    super(ErrorCode.DISABLED, new KeyValuePair("entity", entity),
-        new KeyValuePair("key", key),
-        new KeyValuePair("value", value));
+    super(ErrorCode.DISABLED);
     this.entity = entity;
     this.key = key;
     this.value = value;
+    this.addParam("entity", entity);
+    this.addParam("key", key);
+    this.addParam("value", value);
   }
 
   public String getEntity() {

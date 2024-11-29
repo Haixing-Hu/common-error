@@ -8,19 +8,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
- * Thrown to indicte that the format of the password is invalid.
+ * 表示身份证号码错误。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidIdentityCardFormatException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 5267750209553035561L;
 
+  private final String number;
+
   public InvalidIdentityCardFormatException(final String number) {
-    super(ErrorCode.INVALID_IDENTITY_CARD_FORMAT,
-        new KeyValuePair("number", number));
+    super(ErrorCode.INVALID_IDENTITY_CARD_FORMAT);
+    this.number = number;
+    this.addParam("number", number);
+  }
+
+  public String getNumber() {
+    return number;
   }
 }

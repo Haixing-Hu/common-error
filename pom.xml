@@ -22,39 +22,6 @@
   <name>业务逻辑相关异常类</name>
   <url>${project.home.url}/commons/${artifactId}</url>
 
-  <repositories>
-    <repository>
-      <id>njzhyl-releases</id>
-      <name>Nanjing Smart Medical Maven Release Repository</name>
-      <url>https://nexus.njzhyl.cn/repository/maven-releases/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>njzhyl-snapshots</id>
-      <name>Nanjing Smart Medical Maven Snapshot Repository</name>
-      <url>https://nexus.njzhyl.cn/repository/maven-snapshots/</url>
-      <layout>default</layout>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <properties>
-    <test.jvm.options>--add-opens java.base/java.lang=ALL-UNNAMED</test.jvm.options>
-  </properties>
-
   <dependencies>
     <!-- Our Company -->
     <dependency>
@@ -73,6 +40,10 @@
     <!-- Spring framework -->
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
     </dependency>
 
@@ -82,53 +53,10 @@
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Spring -->
     <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-all</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.btmatthews.hamcrest</groupId>
-      <artifactId>hamcrest-matchers</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- JSON Unit -->
-    <dependency>
-      <groupId>net.javacrumbs.json-unit</groupId>
-      <artifactId>json-unit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.javacrumbs.json-unit</groupId>
-      <artifactId>json-unit-assertj</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- json-unit need javax JAXB -->
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.jaxb</groupId>
-      <artifactId>jaxb-runtime</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- XML Unit -->
-    <dependency>
-      <groupId>org.xmlunit</groupId>
-      <artifactId>xmlunit-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.xmlunit</groupId>
-      <artifactId>xmlunit-matchers</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.xmlunit</groupId>
-      <artifactId>xmlunit-assertj</artifactId>
-      <scope>test</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
     </dependency>
     <!-- logging implementation for unit testing -->
     <dependency>

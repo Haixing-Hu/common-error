@@ -8,7 +8,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
+import ltd.qubit.commons.lang.ObjectUtils;
 
 /**
  * Thrown to indicate a key is duplicated.
@@ -17,21 +19,30 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class DuplicateKeyException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 8047771735232234641L;
 
-  private final String key;
+  private final String field;
   private final String value;
 
-  public DuplicateKeyException(final String key, final String value) {
-    super(ErrorCode.DUPLICATE_KEY,
-        new KeyValuePair("field", getFieldName(key)),
-        new KeyValuePair("value", value));
-    this.key = key.toLowerCase();
-    this.value = value;
+  public DuplicateKeyException(final String field, final Object value) {
+    super(getErrorCodeImpl(field));
+    this.field = getFieldName(field);
+    this.value = ObjectUtils.toString(value, null);
+    this.addParam("field", this.field);
+    this.addParam("value", this.value);
   }
 
-  public String getKey() {
-    return key;
+  private static ErrorCode getErrorCodeImpl(final String field) {
+    if ("username".equalsIgnoreCase(field)) {
+      return ErrorCode.USERNAME_OCCUPIED;
+    } else {
+      return ErrorCode.DUPLICATE_KEY;
+    }
+  }
+
+  public String getField() {
+    return field;
   }
 
   public String getValue() {

@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 /**
  * 此错误表示当前用户被另一个用户所屏蔽。
  *
@@ -15,9 +17,18 @@ package ltd.qubit.commons.error;
  */
 public class BlockedByUserException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -6606852043180373539L;
 
-  public BlockedByUserException() {
+  private final String username;
+
+  public BlockedByUserException(final String username) {
     super(ErrorCode.BLOCKED_BY_USER);
+    this.username = username;
+    this.addParam("username", username);
+  }
+
+  public String getUsername() {
+    return username;
   }
 }

@@ -8,6 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
@@ -15,8 +17,9 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  *
  * @author Haixing Hu
  */
-public class AccessTokenExpiredException extends ServerSideException {
+public class AccessTokenExpiredException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -3711402466521132328L;
 
   private final String entity;

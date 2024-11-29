@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~
+  ~    Copyright (c) 2017 - 2022.
+  ~    Nanjing Smart Medical Investment Operation Service Co. Ltd.
+  ~
+  ~    All rights reserved.
+  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- 全局 Locale -->
+  <bean id="locale" class="java.util.Locale">
+    <constructor-arg index="0" value="zh"/>
+    <constructor-arg index="1" value="CN"/>
+  </bean>
+  <!-- 全局编码 -->
+  <bean id="default-charset" class="java.nio.charset.Charset" factory-method="forName" >
+    <constructor-arg value="UTF-8"/>
+  </bean>
+  <!-- 全局 MessageSource -->
+  <bean id="message-source"
+    class="ltd.qubit.commons.i18n.message.ReloadableResourceBundleMessageSource">
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="cacheSeconds" value="0" />
+    <property name="basenames">
+      <array>
+        <value>classpath:/i18n/common-model/value</value>
+        <value>classpath:/i18n/common-error/error</value>
+      </array>
+    </property>
+  </bean>
+  <!-- 全局 MessageFormatter，用于错误信息、用户提示等 -->
+  <bean id="message-formatter" class="ltd.qubit.commons.util.MessageFormatter">
+    <constructor-arg name="locale" ref="locale"/>
+    <constructor-arg name="messageSource" ref="message-source"/>
+  </bean>
+</beans>

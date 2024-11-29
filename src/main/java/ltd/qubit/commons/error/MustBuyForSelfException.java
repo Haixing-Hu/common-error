@@ -8,10 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
 import ltd.qubit.model.util.Info;
 
 /**
@@ -21,25 +19,32 @@ import ltd.qubit.model.util.Info;
  */
 public class MustBuyForSelfException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 975536938407833445L;
 
   private final Info product;
 
   public MustBuyForSelfException(final Info product) {
-    super(ErrorCode.MUST_BUY_FOR_SELF, makeParams(product));
+    super(ErrorCode.MUST_BUY_FOR_SELF);
     this.product = product;
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
   }
 
   public Info getProduct() {
     return product;
   }
 
-  private static KeyValuePair[] makeParams(final Info product) {
-    final List<KeyValuePair> params = new ArrayList<>();
-    params.add(new KeyValuePair("product_id", product.getId()));
-    params.add(new KeyValuePair("product_code", product.getCode()));
-    params.add(new KeyValuePair("product_name", product.getName()));
-    return params.toArray(new KeyValuePair[0]);
+  public Long getProductId() {
+    return product.getId();
   }
 
+  public String getProductCode() {
+    return product.getCode();
+  }
+
+  public String getProductName() {
+    return product.getName();
+  }
 }

@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * Thrown to indicate that a field value is too long.
@@ -17,13 +17,15 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class FieldTooLongException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = - 3651542010755649520L;
 
   private final String field;
 
   public FieldTooLongException(final String property) {
-    super(ErrorCode.FIELD_TOO_LONG, new KeyValuePair("field", getFieldName(property)));
+    super(ErrorCode.FIELD_TOO_LONG);
     this.field = getFieldName(property);
+    this.addParam("field", this.field);
   }
 
   public String getField() {

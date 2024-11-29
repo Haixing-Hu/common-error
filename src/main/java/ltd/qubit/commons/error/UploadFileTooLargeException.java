@@ -8,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
 
 /**
  * Thrown to indicates the file is too large.
@@ -17,11 +17,25 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class UploadFileTooLargeException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = -3914760211691804752L;
 
-  public UploadFileTooLargeException(final Long maxAllowedSize, final Long actualSize) {
-    super(ErrorType.REQUEST_ERROR, ErrorCode.UPLOAD_FILE_TOO_LARGE,
-        new KeyValuePair("max_allowed_file_size", maxAllowedSize.toString()),
-        new KeyValuePair("actual_file_size", actualSize.toString()));
+  private final Long maxAllowedFileSize;
+  private final Long actualFileSize;
+
+  public UploadFileTooLargeException(final Long maxAllowedFileSize, final Long actualFileSize) {
+    super(ErrorType.REQUEST_ERROR, ErrorCode.UPLOAD_FILE_TOO_LARGE);
+    this.maxAllowedFileSize = maxAllowedFileSize;
+    this.actualFileSize = actualFileSize;
+    this.addParam("max_allowed_file_size", maxAllowedFileSize);
+    this.addParam("actual_file_size", actualFileSize);
+  }
+
+  public Long getMaxAllowedFileSize() {
+    return maxAllowedFileSize;
+  }
+
+  public Long getActualFileSize() {
+    return actualFileSize;
   }
 }

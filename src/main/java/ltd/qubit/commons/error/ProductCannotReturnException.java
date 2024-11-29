@@ -8,10 +8,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
+
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 public class ProductCannotReturnException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = -6494469978924632525L;
 
   private final String productName;

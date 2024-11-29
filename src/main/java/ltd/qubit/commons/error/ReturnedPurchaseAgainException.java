@@ -8,7 +8,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
+import ltd.qubit.commons.lang.LongUtils;
+import ltd.qubit.model.commons.CredentialInfo;
 import ltd.qubit.model.order.Buyer;
 import ltd.qubit.model.product.ProductInfo;
 
@@ -19,6 +22,7 @@ import ltd.qubit.model.product.ProductInfo;
  */
 public class ReturnedPurchaseAgainException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 2555947627572687153L;
 
   private final Buyer buyer;
@@ -26,18 +30,17 @@ public class ReturnedPurchaseAgainException extends BusinessLogicException {
 
   public ReturnedPurchaseAgainException(final Buyer buyer,
       final ProductInfo product) {
-    super(ErrorCode.RETURNED_PURCHASE_AGAIN,
-        new KeyValuePair("buyer_name", buyer.getName()),
-        new KeyValuePair("buyer_mobile", buyer.getMobile()),
-        new KeyValuePair("buyer_credential_type",
-            (buyer.getCredential() != null ? buyer.getCredential().getType() : null)),
-        new KeyValuePair("buyer_credential_number",
-            (buyer.getCredential() != null ? buyer.getCredential().getNumber() : null)),
-        new KeyValuePair("product_id", product.getId()),
-        new KeyValuePair("product_code", product.getCode()),
-        new KeyValuePair("product_name", product.getName()));
+    super(ErrorCode.RETURNED_PURCHASE_AGAIN);
     this.buyer = buyer;
     this.product = product;
+    this.addParam("buyer_name", buyer.getName());
+    this.addParam("buyer_mobile", buyer.getMobile());
+    final CredentialInfo credential = buyer.getCredential();
+    this.addParam("buyer_credential_type", credential == null ? null : credential.getType().name());
+    this.addParam("buyer_credential_number", credential == null ? null : credential.getNumber());
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
   }
 
   public Buyer getBuyer() {
@@ -46,5 +49,35 @@ public class ReturnedPurchaseAgainException extends BusinessLogicException {
 
   public ProductInfo getProduct() {
     return product;
+  }
+
+  public String getBuyerName() {
+    return buyer.getName();
+  }
+
+  public String getBuyerMobile() {
+    return buyer.getMobile() == null ? null : buyer.getMobile().toString();
+  }
+
+  public String getBuyerCredentialType() {
+    final CredentialInfo credential = buyer.getCredential();
+    return (credential == null ? null : credential.getType().name());
+  }
+
+  public String getBuyerCredentialNumber() {
+    final CredentialInfo credential = buyer.getCredential();
+    return (credential == null ? null : credential.getNumber());
+  }
+
+  public String getProductId() {
+    return LongUtils.toString(product.getId());
+  }
+
+  public String getProductCode() {
+    return product.getCode();
+  }
+
+  public String getProductName() {
+    return product.getName();
   }
 }

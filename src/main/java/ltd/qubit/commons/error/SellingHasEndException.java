@@ -8,12 +8,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 public class SellingHasEndException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 5983886472917964829L;
 
   private final LocalDateTime now;

@@ -8,7 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
 import ltd.qubit.model.commons.Currency;
 
 /**
@@ -18,24 +19,25 @@ import ltd.qubit.model.commons.Currency;
  */
 public class MismatchCurrencyException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 8021373779863352893L;
 
-  private final Currency expected;
-  private final Currency actual;
+  private final Currency expectedCurrency;
+  private final Currency actualCurrency;
 
-  public MismatchCurrencyException(final Currency expected, final Currency actual) {
-    super(ErrorCode.MISMATCH_CURRENCY,
-        new KeyValuePair("expected_currency", expected),
-        new KeyValuePair("actual_currency", actual));
-    this.expected = expected;
-    this.actual = actual;
+  public MismatchCurrencyException(final Currency expectedCurrency, final Currency actualCurrency) {
+    super(ErrorCode.MISMATCH_CURRENCY);
+    this.expectedCurrency = expectedCurrency;
+    this.actualCurrency = actualCurrency;
+    this.addParam("expected_currency", expectedCurrency);
+    this.addParam("actual_currency", actualCurrency);
   }
 
-  public Currency getExpected() {
-    return expected;
+  public Currency getExpectedCurrency() {
+    return expectedCurrency;
   }
 
-  public Currency getActual() {
-    return actual;
+  public Currency getActualCurrency() {
+    return actualCurrency;
   }
 }

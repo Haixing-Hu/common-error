@@ -8,7 +8,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package ltd.qubit.commons.error;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
+import java.io.Serial;
+
 import ltd.qubit.model.product.ProductInfo;
 
 /**
@@ -18,19 +19,32 @@ import ltd.qubit.model.product.ProductInfo;
  */
 public class InvalidPriceException extends BusinessLogicException {
 
+  @Serial
   private static final long serialVersionUID = 4393486077067411366L;
 
   private final ProductInfo product;
 
   public InvalidPriceException(final ProductInfo product) {
-    super(ErrorCode.INVALID_PRICE,
-        new KeyValuePair("product_id", product.getId()),
-        new KeyValuePair("product_code", product.getCode()),
-        new KeyValuePair("product_name", product.getName()));
+    super(ErrorCode.INVALID_PRICE);
     this.product = product;
+    this.addParam("product_id", product.getId());
+    this.addParam("product_code", product.getCode());
+    this.addParam("product_name", product.getName());
   }
 
   public ProductInfo getProduct() {
     return product;
+  }
+
+  public Long getProductId() {
+    return product.getId();
+  }
+
+  public String getProductName() {
+    return product.getName();
+  }
+
+  public String getProductCode() {
+    return product.getCode();
   }
 }
