@@ -219,6 +219,21 @@ public enum ErrorCode {
    */
   ENCRYPT_MESSAGE_FAILED(EncryptException.class),
 
+  /**
+   * Indicates that the specified entity was marked as cancelled.
+   */
+  ENTITY_CANCELLED(EntityCancelledException.class),
+
+  /**
+   * Indicates that the specified entity was marked as completed.
+   */
+  ENTITY_COMPLETED(EntityCompletedException.class),
+
+  /**
+   * Indicates that the specified entity was marked as failed.
+   */
+  ENTITY_FAILED(EntityFailedException.class),
+
   // /**
   //  * 表示快递系统调用失败。
   //  * <p>
