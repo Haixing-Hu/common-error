@@ -75,23 +75,23 @@ public class ServerSideException extends DataAccessException
     return params;
   }
 
-  protected final void setParams(final KeyValuePairList params) {
+  public final void setParams(final KeyValuePairList params) {
     this.params = params;
   }
 
-  protected final void setParams(final KeyValuePair ...  params) {
+  public final void setParams(final KeyValuePair ...  params) {
     this.params = KeyValuePairList.ofArray(params);
   }
 
-  protected final void addParam(final KeyValuePair param) {
+  public final void addParam(final KeyValuePair param) {
     this.params.add(param);
   }
 
-  protected final void addParam(final String key, final Object value) {
+  public final void addParam(final String key, final Object value) {
     this.params.add(new KeyValuePair(key, value));
   }
 
-  protected final void addParams(final KeyValuePair ...  params) {
+  public final void addParams(final KeyValuePair ...  params) {
     Collections.addAll(this.params, params);
   }
 
