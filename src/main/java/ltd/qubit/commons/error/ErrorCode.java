@@ -437,6 +437,11 @@ public enum ErrorCode {
   INVALID_SIGNATURE(InvalidSignatureException.class),
 
   /**
+   * SQL语法错误。
+   */
+  INVALID_SQL_SYNTAX(InvalidSqlSyntaxException.class),
+
+  /**
    * 表示状态错误。
    */
   INVALID_STATUS(InvalidStatusException.class),
