@@ -9,6 +9,9 @@
 package ltd.qubit.commons.error;
 
 import java.io.IOException;
+import java.io.Serial;
+
+import javax.annotation.Nullable;
 
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
@@ -22,6 +25,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
  */
 public class ServerSideIoException extends ServerSideException {
 
+  @Serial
   private static final long serialVersionUID = 476295550047450167L;
 
   private final IOException cause;
@@ -32,6 +36,13 @@ public class ServerSideIoException extends ServerSideException {
     this.cause = cause;
   }
 
+  public ServerSideIoException(final String message) {
+    super(ErrorType.IO_ERROR, ErrorCode.IO_ERROR,
+        new KeyValuePair("message", message));
+    this.cause = new IOException(message);
+  }
+
+  @Nullable
   @Override
   public IOException getCause() {
     return cause;
