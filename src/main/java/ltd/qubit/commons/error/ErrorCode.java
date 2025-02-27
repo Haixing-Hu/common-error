@@ -704,9 +704,19 @@ public enum ErrorCode {
   SEND_SMS_FAILED(SendSmsException.class),
 
   /**
-   * 表示调用服务失败。
+   * 表示调用第三方服务失败。
    */
   THIRD_PARTY_SERVICE_FAILURE(ThirdPartyServiceException.class),
+
+  /**
+   * 表示调用第三方服务时其存取令牌已过期。
+   */
+  THIRD_PARTY_ACCESS_TOKEN_EXPIRED(ThirdPartyAccessTokenExpiredException.class),
+
+  /**
+   * 表示调用第三方服务时其存取令牌不正确。
+   */
+  THIRD_PARTY_ACCESS_TOKEN_INVALID(ThirdPartyAccessTokenInvalidException.class),
 
   /**
    * Indicates a serialization error.

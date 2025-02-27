@@ -9,6 +9,7 @@
 package ltd.qubit.commons.error;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collections;
 
 import javax.annotation.Nullable;
@@ -30,7 +31,7 @@ import static ltd.qubit.commons.text.CaseFormat.UPPER_UNDERSCORE;
  * @author 胡海星
  */
 public class ServerSideException extends DataAccessException
-    implements ErrorInfoConvertable {
+    implements ErrorInfoConvertable, Serializable {
 
   @Serial
   private static final long serialVersionUID = -1518045055520365532L;

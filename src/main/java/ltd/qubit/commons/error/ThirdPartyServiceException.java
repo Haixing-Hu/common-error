@@ -12,10 +12,19 @@ import java.io.Serial;
 
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
+/**
+ * 表示调用第三方服务产生的异常。
+ *
+ * @author 胡海星
+ */
 public class ThirdPartyServiceException extends ServerSideException {
 
   @Serial
   private static final long serialVersionUID = -7165213672754327853L;
+
+  public ThirdPartyServiceException(final Throwable e) {
+    this(ErrorCode.THIRD_PARTY_SERVICE_FAILURE, e.getMessage());
+  }
 
   public ThirdPartyServiceException(final String message) {
     this(ErrorCode.THIRD_PARTY_SERVICE_FAILURE, message);
