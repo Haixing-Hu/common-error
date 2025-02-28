@@ -10,8 +10,6 @@ package ltd.qubit.commons.error;
 
 import java.io.Serial;
 
-import ltd.qubit.commons.util.pair.KeyValuePair;
-
 /**
  * 表示调用第三方服务的访问令牌不正确。
  *
@@ -22,15 +20,11 @@ public class ThirdPartyAccessTokenInvalidException extends ThirdPartyServiceExce
   @Serial
   private static final long serialVersionUID = -3019980777893906230L;
 
-  private final String accessToken;
-
-  public ThirdPartyAccessTokenInvalidException(final String accessToken) {
-    super(ErrorCode.THIRD_PARTY_ACCESS_TOKEN_INVALID,
-        new KeyValuePair("access_token", accessToken));
-    this.accessToken = accessToken;
+  public ThirdPartyAccessTokenInvalidException() {
+    super(ErrorCode.THIRD_PARTY_ACCESS_TOKEN_INVALID);
   }
 
-  public String getAccessToken() {
-    return accessToken;
+  public ThirdPartyAccessTokenInvalidException(final String message) {
+    super(ErrorCode.THIRD_PARTY_ACCESS_TOKEN_INVALID, message);
   }
 }
