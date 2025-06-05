@@ -11,15 +11,18 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * An exception thrown to indicate the expiration of verify code.
+ * 表示验证码已过期的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class VerifyCodeExpiredException extends BusinessLogicException {
 
   @Serial
   private static final long serialVersionUID = -3445682897108257543L;
 
+  /**
+   * 构造一个 {@link VerifyCodeExpiredException} 对象。
+   */
   public VerifyCodeExpiredException() {
     super(ErrorCode.VERIFY_CODE_EXPIRED);
   }

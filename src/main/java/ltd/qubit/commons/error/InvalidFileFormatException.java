@@ -11,9 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * Thrown to indicate that the file format is invalid.
+ * 表示文件格式无效的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidFileFormatException extends ServerSideException {
 
@@ -22,16 +22,30 @@ public class InvalidFileFormatException extends ServerSideException {
 
   private final String reason;
 
+  /**
+   * 构造一个 {@link InvalidFileFormatException} 对象。
+   */
   public InvalidFileFormatException() {
     this("");
   }
 
+  /**
+   * 使用指定的原由构造一个 {@link InvalidFileFormatException} 对象。
+   *
+   * @param reason
+   *     描述文件格式无效原因的字符串。
+   */
   public InvalidFileFormatException(final String message) {
     super(ErrorType.IO_ERROR, ErrorCode.INVALID_FILE_FORMAT);
     this.reason = message;
     this.addParam("reason", message);
   }
 
+  /**
+   * 获取描述文件格式无效原因的字符串。
+   *
+   * @return 描述文件格式无效原因的字符串。
+   */
   public String getReason() {
     return reason;
   }

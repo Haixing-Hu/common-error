@@ -10,6 +10,11 @@ package ltd.qubit.commons.error;
 
 import java.io.Serial;
 
+/**
+ * 表示发送电子邮件失败的异常。
+ *
+ * @author 胡海星
+ */
 public class SendEmailException extends ThirdPartyServiceException {
 
   @Serial
@@ -22,15 +27,14 @@ public class SendEmailException extends ThirdPartyServiceException {
   private final String thirdPartyMessage;
 
   /**
-   * Constructs a {@link SendEmailException}.
+   * 构造一个 {@link SendEmailException} 对象。
    *
    * @param email
-   *     the email address.
+   *     目标电子邮件地址。
    * @param thirdPartyCode
-   *     the error code returned by the third-party service.
+   *     第三方服务返回的错误代码。
    * @param thirdPartyMessage
-   *     the detailed error message describing the error returned by the
-   *     third-party service.
+   *     第三方服务返回的描述错误的详细错误消息。
    */
   public SendEmailException(final String email, final String thirdPartyCode,
       final String thirdPartyMessage) {
@@ -43,14 +47,29 @@ public class SendEmailException extends ThirdPartyServiceException {
     this.addParam("third_party_message", this.thirdPartyMessage);
   }
 
+  /**
+   * 获取目标电子邮件地址。
+   *
+   * @return 目标电子邮件地址。
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * 获取第三方服务返回的错误代码。
+   *
+   * @return 第三方服务返回的错误代码。
+   */
   public String getThirdPartyCode() {
     return thirdPartyCode;
   }
 
+  /**
+   * 获取第三方服务返回的详细错误消息。
+   *
+   * @return 第三方服务返回的详细错误消息。
+   */
   public String getThirdPartyMessage() {
     return thirdPartyMessage;
   }

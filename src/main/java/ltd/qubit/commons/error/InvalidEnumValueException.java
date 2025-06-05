@@ -11,9 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * Thrown to indicate that the value of an enumeration is invalid.
+ * 表示枚举值无效的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidEnumValueException extends BusinessLogicException {
 
@@ -24,6 +24,14 @@ public class InvalidEnumValueException extends BusinessLogicException {
 
   private final String value;
 
+  /**
+   * 使用指定的枚举类和无效值构造一个 {@link InvalidEnumValueException} 对象。
+   *
+   * @param enumClass
+   *     相关的枚举类。
+   * @param value
+   *     无效的枚举值字符串。
+   */
   public InvalidEnumValueException(final Class<?> enumClass, final String value) {
     super(ErrorCode.INVALID_ENUM_VALUE);
     this.entity = getEntityName(enumClass);
@@ -32,10 +40,20 @@ public class InvalidEnumValueException extends BusinessLogicException {
     this.addParam("value", this.value);
   }
 
+  /**
+   * 获取相关的枚举类的名称。
+   *
+   * @return 相关的枚举类的名称 (通常是 lower_underscore 格式)。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取无效的枚举值字符串。
+   *
+   * @return 无效的枚举值字符串。
+   */
   public String getValue() {
     return value;
   }

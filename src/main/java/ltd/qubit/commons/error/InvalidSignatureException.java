@@ -26,6 +26,14 @@ public class InvalidSignatureException extends BusinessLogicException {
 
   private final String signature;
 
+  /**
+   * 使用指定的消息和签名构造一个 {@link InvalidSignatureException} 对象。
+   *
+   * @param message
+   *     签名无效的消息。
+   * @param signature
+   *     无效的签名。
+   */
   public InvalidSignatureException(final String message, final String signature) {
     super(ErrorCode.INVALID_SIGNATURE, new KeyValuePair("message", message),
         new KeyValuePair("signature", signature));
@@ -38,6 +46,11 @@ public class InvalidSignatureException extends BusinessLogicException {
     return message;
   }
 
+  /**
+   * 获取无效的签名。
+   *
+   * @return 无效的签名。
+   */
   public final String getSignature() {
     return signature;
   }

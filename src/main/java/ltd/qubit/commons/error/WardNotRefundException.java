@@ -27,6 +27,12 @@ public class WardNotRefundException extends BusinessLogicException {
 
   private final Person ward;
 
+  /**
+   * 使用指定的被监护人对象构造一个 {@link WardNotRefundException} 对象。
+   *
+   * @param guarded
+   *     未退款的被监护人对象。
+   */
   public WardNotRefundException(final Person guarded) {
     super(ErrorCode.WARD_NOT_REFUND);
     this.ward = guarded;
@@ -37,24 +43,49 @@ public class WardNotRefundException extends BusinessLogicException {
     this.addParam("ward_birthday", guarded.getBirthday());
   }
 
+  /**
+   * 获取未退款的被监护人对象。
+   *
+   * @return 未退款的被监护人对象。
+   */
   public Person getWard() {
     return ward;
   }
 
+  /**
+   * 获取未退款的被监护人的姓名。
+   *
+   * @return 未退款的被监护人的姓名。
+   */
   public String getWardName() {
     return ward.getName();
   }
 
+  /**
+   * 获取未退款的被监护人的证件类型。
+   *
+   * @return 未退款的被监护人的证件类型字符串，如果证件信息不存在则返回 null。
+   */
   public String getWardCredentialType() {
     final CredentialInfo credential = ward.getCredential();
     return (credential == null ? null : StringUtils.toString(credential.getType()));
   }
 
+  /**
+   * 获取未退款的被监护人的证件号码。
+   *
+   * @return 未退款的被监护人的证件号码，如果证件信息不存在则返回 null。
+   */
   public String getWardCredentialNumber() {
     final CredentialInfo credential = ward.getCredential();
     return (credential == null ? null : credential.getNumber());
   }
 
+  /**
+   * 获取未退款的被监护人的生日字符串。
+   *
+   * @return 未退款的被监护人的生日字符串，格式为 yyyy-MM-dd。
+   */
   public String getWardBirthday() {
     return LocalDateUtils.toString(ward.getBirthday());
   }

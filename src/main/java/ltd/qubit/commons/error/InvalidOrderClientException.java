@@ -16,7 +16,7 @@ import ltd.qubit.model.product.ProductInfo;
 /**
  * 表示订单中客户信息错误。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidOrderClientException extends BusinessLogicException {
 
@@ -26,6 +26,14 @@ public class InvalidOrderClientException extends BusinessLogicException {
   private final Long orderId;
   private final ProductInfo product;
 
+  /**
+   * 使用指定的订单ID和产品信息构造一个 {@link InvalidOrderClientException} 对象。
+   *
+   * @param orderId
+   *     客户信息错误的订单的ID。
+   * @param product
+   *     订单中相关的产品信息。
+   */
   public InvalidOrderClientException(final Long orderId, final ProductInfo product) {
     super(ErrorCode.INVALID_ORDER_CLIENT,
         new KeyValuePair("order_id", orderId),
@@ -36,10 +44,20 @@ public class InvalidOrderClientException extends BusinessLogicException {
     this.product = product;
   }
 
+  /**
+   * 获取客户信息错误的订单的ID。
+   *
+   * @return 客户信息错误的订单的ID。
+   */
   public Long getOrderId() {
     return orderId;
   }
 
+  /**
+   * 获取订单中相关的产品信息。
+   *
+   * @return 订单中相关的产品信息。
+   */
   public ProductInfo getProduct() {
     return product;
   }

@@ -15,7 +15,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
 /**
  * 表示实体状态错误。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidStatusException extends BusinessLogicException {
 
@@ -26,6 +26,16 @@ public class InvalidStatusException extends BusinessLogicException {
   private final Class<?> statusClass;
   private final String status;
 
+  /**
+   * 使用指定的实体类型和状态枚举构造一个 {@link InvalidStatusException} 对象。
+   *
+   * @param entityType
+   *     具有无效状态的实体的类对象。
+   * @param status
+   *     无效的状态枚举常量。
+   * @param <S>
+   *     状态枚举的类型。
+   */
   public <S extends Enum<S>> InvalidStatusException(final Class<?> entityType,
       final S status) {
     this(getEntityName(entityType), status.getClass(), status.name());
@@ -42,14 +52,29 @@ public class InvalidStatusException extends BusinessLogicException {
     this.status = getFieldName(status);
   }
 
+  /**
+   * 获取具有无效状态的实体的名称。
+   *
+   * @return 具有无效状态的实体的名称 (通常是 lower_underscore 格式)。
+   */
   public final String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取状态枚举的类对象。
+   *
+   * @return 状态枚举的类对象。
+   */
   public Class<?> getStatusClass() {
     return statusClass;
   }
 
+  /**
+   * 获取无效状态的名称。
+   *
+   * @return 无效状态的名称 (通常是 lower_underscore 格式)。
+   */
   public final String getStatus() {
     return status;
   }

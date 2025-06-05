@@ -16,9 +16,9 @@ import ltd.qubit.commons.reflect.FieldUtils;
 import ltd.qubit.commons.reflect.impl.GetterMethod;
 
 /**
- * The exception thrown to indicate that the format of a field is invalid.
+ * 表示字段格式无效的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidFieldFormatException extends BusinessLogicException {
 
@@ -39,6 +39,14 @@ public class InvalidFieldFormatException extends BusinessLogicException {
   private final String field;
   private final Object value;
 
+  /**
+   * 使用指定的属性名称和无效值构造一个 {@link InvalidFieldFormatException} 对象。
+   *
+   * @param property
+   *     格式无效的字段的属性名称 (通常是 lowerCamelCase 格式)。
+   * @param value
+   *     无效的字段值。
+   */
   public InvalidFieldFormatException(final String property, final Object value) {
     super(getErrorCode(property));
     this.field = getFieldName(property);
@@ -47,6 +55,21 @@ public class InvalidFieldFormatException extends BusinessLogicException {
     this.addParam("value", this.value);
   }
 
+  /**
+   * 使用指定的类、字段的 getter 方法和无效值构造一个
+   * {@link InvalidFieldFormatException} 对象。
+   *
+   * @param type
+   *     包含格式无效字段的对象的类。
+   * @param getter
+   *     用于获取字段值的 getter 方法。
+   * @param value
+   *     无效的字段值。
+   * @param <T>
+   *     包含格式无效字段的对象的类型。
+   * @param <P>
+   *     格式无效字段的类型。
+   */
   public <T, P> InvalidFieldFormatException(final Class<T> type,
       final GetterMethod<T, P> getter, final P value) {
     this(FieldUtils.getFieldName(type, getter), value);
@@ -58,18 +81,18 @@ public class InvalidFieldFormatException extends BusinessLogicException {
   }
 
   /**
-   * Gets the field.
+   * 获取格式无效的字段的名称。
    *
-   * @return the field.
+   * @return 格式无效的字段的名称 (通常是 lower_underscore 格式)。
    */
   public String getField() {
     return field;
   }
 
   /**
-   * Gets the value.
+   * 获取无效的字段值。
    *
-   * @return the value.
+   * @return 无效的字段值。
    */
   public Object getValue() {
     return value;

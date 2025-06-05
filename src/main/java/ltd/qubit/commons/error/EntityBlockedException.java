@@ -13,9 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate an entity was marked as blocked.
+ * 表示实体被屏蔽的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class EntityBlockedException extends BusinessLogicException {
 
@@ -26,11 +26,31 @@ public class EntityBlockedException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类型、键和值构造一个 {@link EntityBlockedException} 对象。
+   *
+   * @param entityType
+   *     被屏蔽的实体的类对象。
+   * @param key
+   *     用于标识实体的键的名称。
+   * @param value
+   *     用于标识实体的键的值。
+   */
   public EntityBlockedException(final Class<?> entityType,
       final String key, final Object value) {
     this(getEntityName(entityType), getFieldName(key), value);
   }
 
+  /**
+   * 使用指定的实体名称、键和值构造一个 {@link EntityBlockedException} 对象。
+   *
+   * @param entity
+   *     被屏蔽的实体的名称。
+   * @param key
+   *     用于标识实体的键的名称。
+   * @param value
+   *     用于标识实体的键的值。
+   */
   public EntityBlockedException(final String entity, final String key,
       final Object value) {
     super(ErrorCode.BLOCKED, new KeyValuePair("entity", entity),
@@ -41,14 +61,29 @@ public class EntityBlockedException extends BusinessLogicException {
     this.value = value;
   }
 
+  /**
+   * 获取被屏蔽的实体的名称。
+   *
+   * @return 被屏蔽的实体的名称 (通常是 lower_underscore 格式)。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识实体的键的名称。
+   *
+   * @return 用于标识实体的键的名称 (通常是 lower_underscore 格式)。
+   */
   public final String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识实体的键的值。
+   *
+   * @return 用于标识实体的键的值。
+   */
   public final Object getValue() {
     return value;
   }

@@ -11,9 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * The exception thrown to indicate that a friendship already exists.
+ * 表示好友关系已存在的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class FriendExistException extends BusinessLogicException {
 
@@ -22,12 +22,23 @@ public class FriendExistException extends BusinessLogicException {
 
   private final String friendName;
 
+  /**
+   * 使用指定的好友名称构造一个 {@link FriendExistException} 对象。
+   *
+   * @param friendName
+   *     已存在的好友的名称。
+   */
   public FriendExistException(final String friendName) {
     super(ErrorCode.FRIEND_EXIST);
     this.friendName = friendName;
     this.addParam("field_name", friendName);
   }
 
+  /**
+   * 获取已存在的好友的名称。
+   *
+   * @return 已存在的好友的名称。
+   */
   public String getFriendName() {
     return friendName;
   }

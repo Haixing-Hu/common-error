@@ -26,6 +26,16 @@ public class NoEnoughInventoryException extends BusinessLogicException {
   private final Integer expected;
   private final Integer actual;
 
+  /**
+   * 使用指定的产品信息、期望数量和实际数量构造一个 {@link NoEnoughInventoryException} 对象。
+   *
+   * @param product
+   *     库存不足的产品的信息。
+   * @param expected
+   *     期望购买的产品数量。
+   * @param actual
+   *     实际剩余的产品库存数量。
+   */
   public NoEnoughInventoryException(final Info product,
       final Integer expected, final Integer actual) {
     super(ErrorCode.NO_ENOUGH_INVENTORY);
@@ -39,26 +49,56 @@ public class NoEnoughInventoryException extends BusinessLogicException {
     this.addParam("actual", actual);
   }
 
+  /**
+   * 获取库存不足的产品的信息。
+   *
+   * @return 库存不足的产品的信息。
+   */
   public Info getProduct() {
     return product;
   }
 
+  /**
+   * 获取产品的ID。
+   *
+   * @return 产品的ID。
+   */
   public Long getProductId() {
     return product.getId();
   }
 
+  /**
+   * 获取产品的代码。
+   *
+   * @return 产品的代码。
+   */
   public String getProductCode() {
     return product.getCode();
   }
 
+  /**
+   * 获取产品的名称。
+   *
+   * @return 产品的名称。
+   */
   public String getProductName() {
     return product.getName();
   }
 
+  /**
+   * 获取期望购买的产品数量。
+   *
+   * @return 期望购买的产品数量。
+   */
   public Integer getExpected() {
     return expected;
   }
 
+  /**
+   * 获取实际剩余的产品库存数量。
+   *
+   * @return 实际剩余的产品库存数量。
+   */
   public Integer getActual() {
     return actual;
   }

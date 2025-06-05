@@ -13,7 +13,7 @@ import java.io.Serial;
 /**
  * 表示姓名不匹配。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class MismatchPersonNameException extends BusinessLogicException {
 
@@ -23,6 +23,14 @@ public class MismatchPersonNameException extends BusinessLogicException {
   private final String expectedName;
   private final String actualName;
 
+  /**
+   * 使用预期的姓名和实际的姓名构造一个 {@link MismatchPersonNameException} 对象。
+   *
+   * @param expectedName
+   *     预期的姓名。
+   * @param actualName
+   *     实际的姓名。
+   */
   public MismatchPersonNameException(final String expectedName, final String actualName) {
     super(ErrorCode.MISMATCH_PERSON_NAME);
     this.expectedName = expectedName;
@@ -31,10 +39,20 @@ public class MismatchPersonNameException extends BusinessLogicException {
     this.addParam("actual_name", actualName);
   }
 
+  /**
+   * 获取预期的姓名。
+   *
+   * @return 预期的姓名。
+   */
   public String getExpectedName() {
     return expectedName;
   }
 
+  /**
+   * 获取实际的姓名。
+   *
+   * @return 实际的姓名。
+   */
   public String getActualName() {
     return actualName;
   }

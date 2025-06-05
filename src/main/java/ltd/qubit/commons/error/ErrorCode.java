@@ -35,9 +35,9 @@ import ltd.qubit.commons.io.error.FileIsNotDirectoryException;
 import ltd.qubit.commons.io.error.FileNotExistException;
 
 /**
- * The enumeration of error codes.
+ * 错误码的枚举。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public enum ErrorCode {
   /**
@@ -66,33 +66,32 @@ public enum ErrorCode {
   APPOINTMENT_CANNOT_DELETE(AppointmentCannotDeleteException.class),
 
   /**
-   * Indicates that the operation cannot be performed until the app get the
-   * authentication.
+   * 表示该操作需要应用认证通过后才能执行。
    */
   APP_AUTHENTICATION_REQUIRED(AppAuthenticationRequiredException.class),
 
   /**
-   * Indicates that the format of the request is invalid.
+   * 表示请求的格式无效。
    */
   BAD_REQUEST(HttpMessageNotWritableException.class),
 
   /**
-   * Indicates that the specified entity was marked as blocked.
+   * 表示指定的实体已被标记为已阻止。
    */
   BLOCKED(EntityBlockedException.class),
 
   /**
-   * Indicates that the current user blocks a user.
+   * 表示当前用户阻止了某个用户。
    */
   BLOCK_USER(BlockUserException.class),
 
   /**
-   * Indicates that the current user was blocked by the other user.
+   * 表示当前用户已被其他用户阻止。
    */
   BLOCKED_BY_USER(BlockedByUserException.class),
 
   /**
-   * Indicates an error occurs in the chat server.
+   * 表示聊天服务器发生错误。
    */
   CHAT_SERVER_ERROR(ChatServerError.class),
 
@@ -103,23 +102,22 @@ public enum ErrorCode {
   // COMPLAINT_EXIST(ComplaintExistException.class),
 
   /**
-   * Indicates that another database error occurred.
+   * 表示发生了数据库错误。
    */
   DATABASE_ERROR(DataUpdateFailException.class),
 
   /**
-   * Indicates that the specified entity was marked as deleted.
+   * 表示指定的实体已被标记为已删除。
    */
   DELETED(EntityDeletedException.class),
 
   /**
-   * Indicates an error occurred while the current user try to delete itself.
+   * 表示当前用户尝试删除自己时发生错误。
    */
   DELETE_CURRENT_USER(DeleteCurrentUserException.class),
 
   /**
-   * Indicates that an error is occurred while deleting an entity with a field
-   * referenced by another entity as a foreign key.
+   * 表示删除一个其字段被其他实体作为外键引用的实体时发生错误。
    */
   DELETE_REFERENCED_FOREIGN_KEY(ForeignKeyConstraintFailException.class),
 
@@ -129,52 +127,52 @@ public enum ErrorCode {
   DECRYPT_MESSAGE_FAILED(DecryptException.class),
 
   /**
-   * Indicates that the specified directory already exists.
+   * 表示指定的目录已存在。
    */
   DIRECTORY_ALREADY_EXIST(DirectoryAlreadyExistException.class),
 
   /**
-   * Indicates that the specified directory cannot be copied.
+   * 表示指定的目录无法复制。
    */
   DIRECTORY_CANNOT_COPY(DirectoryCannotCopyException.class),
 
   /**
-   * Indicates that the specified directory cannot be created.
+   * 表示指定的目录无法创建。
    */
   DIRECTORY_CANNOT_CREATE(DirectoryCannotCreateException.class),
 
   /**
-   * Indicates that the specified directory cannot be deleted.
+   * 表示指定的目录无法删除。
    */
   DIRECTORY_CANNOT_DELETE(DirectoryCannotDeleteException.class),
 
   /**
-   * Indicates that the specified directory cannot be listed.
+   * 表示无法列出指定的目录内容。
    */
   DIRECTORY_CANNOT_LIST(DirectoryCannotListException.class),
 
   /**
-   * Indicates that the specified directory cannot be moved.
+   * 表示指定的目录无法移动。
    */
   DIRECTORY_CANNOT_MOVE(DirectoryCannotMoveException.class),
 
   /**
-   * Indicates that the specified directory cannot be read.
+   * 表示指定的目录无法读取。
    */
   DIRECTORY_CANNOT_READ(DirectoryCannotReadException.class),
 
   /**
-   * Indicates that the specified directory cannot be written.
+   * 表示指定的目录无法写入。
    */
   DIRECTORY_CANNOT_WRITE(DirectoryCannotWriteException.class),
 
   /**
-   * Indicates that the specified directory does not exist.
+   * 表示指定的目录不存在。
    */
   DIRECTORY_NOT_EXIST(DirectoryNotExistException.class),
 
   /**
-   * Indicates that the specified entity was disabled.
+   * 表示指定的实体已被禁用。
    */
   DISABLED(EntityDisabledException.class),
 
@@ -189,8 +187,7 @@ public enum ErrorCode {
   DUPLICATE_BUYER(DuplicateBuyerException.class),
 
   /**
-   * Indicates that the input value of an unique field is duplicated with an
-   * existing value in that field.
+   * 表示唯一字段的输入值与该字段中的现有值重复。
    */
   DUPLICATE_KEY(DuplicateKeyException.class),
 
@@ -205,7 +202,7 @@ public enum ErrorCode {
   DUPLICATE_PURCHASE(DuplicatePurchaseException.class),
 
   /**
-   * Indicates that a required field is empty.
+   * 表示必填字段为空。
    */
   EMPTY_FIELD(NullFieldException.class),
 
@@ -215,22 +212,22 @@ public enum ErrorCode {
   ENCODING_MESSAGE_FAILED(EncodingMessageException.class),
 
   /**
-   * Indicate that encrypting a message failed.
+   * 表示加密消息失败。
    */
   ENCRYPT_MESSAGE_FAILED(EncryptException.class),
 
   /**
-   * Indicates that the specified entity was marked as cancelled.
+   * 表示指定的实体已被标记为已取消。
    */
   ENTITY_CANCELLED(EntityCancelledException.class),
 
   /**
-   * Indicates that the specified entity was marked as completed.
+   * 表示指定的实体已被标记为已完成。
    */
   ENTITY_COMPLETED(EntityCompletedException.class),
 
   /**
-   * Indicates that the specified entity was marked as failed.
+   * 表示指定的实体已被标记为已失败。
    */
   ENTITY_FAILED(EntityFailedException.class),
 
@@ -242,72 +239,72 @@ public enum ErrorCode {
   // EXPRESS_GENERATE_FAILURE(ExpressGenerateFailureException.class),
 
   /**
-   * Indicates that the value of a field is out of the range.
+   * 表示字段的值超出范围。
    */
   FIELD_OUT_OF_RANGE(FieldValueOutOfRangeException.class),
 
   /**
-   * Indicates that the length of a field exceeds its limitation.
+   * 表示字段的长度超出限制。
    */
   FIELD_TOO_LONG(FieldTooLongException.class),
 
   /**
-   * Indicates that the specified file already exists.
+   * 表示指定的文件已存在。
    */
   FILE_ALREADY_EXIST(FileAlreadyExistException.class),
 
   /**
-   * Indicates that the specified file cannot be copied.
+   * 表示指定的文件无法复制。
    */
   FILE_CANNOT_COPY(FileCannotCopyException.class),
 
   /**
-   * Indicates that the specified file cannot be created.
+   * 表示指定的文件无法创建。
    */
   FILE_CANNOT_CREATE(FileCannotCreateException.class),
 
   /**
-   * Indicates that the specified file cannot be deleted.
+   * 表示指定的文件无法删除。
    */
   FILE_CANNOT_DELETE(FileCannotDeleteException.class),
 
   /**
-   * Indicates that the specified file cannot be executed.
+   * 表示指定的文件无法执行。
    */
   FILE_CANNOT_EXECUTE(FileCannotExecuteException.class),
 
   /**
-   * Indicates that the specified file cannot be moved.
+   * 表示指定的文件无法移动。
    */
   FILE_CANNOT_MOVE(FileCannotMoveException.class),
 
   /**
-   * Indicates that the specified file cannot be read.
+   * 表示指定的文件无法读取。
    */
   FILE_CANNOT_READ(FileCannotReadException.class),
 
   /**
-   * Indicates that the specified file cannot be written.
+   * 表示指定的文件无法写入。
    */
   FILE_CANNOT_WRITE(FileCannotWriteException.class),
 
   /**
-   * Indicates that the specified file is a directory.
+   * 表示指定的文件是一个目录。
    */
   FILE_IS_DIRECTORY(FileIsDirectoryException.class),
 
   /**
-   * Indicates that the specified file is not a directory.
+   * 表示指定的文件不是一个目录。
    */
   FILE_IS_NOT_DIRECTORY(FileIsNotDirectoryException.class),
 
   /**
-   * Indicates that the specified file does not exist.
+   * 表示指定的文件不存在。
    */
   FILE_NOT_EXIST(FileNotExistException.class),
 
   /**
-   * Indicates that the friendship already exist.
+   * 表示好友关系已存在。
    */
   FRIEND_EXIST(FriendExistException.class),
 
@@ -322,7 +319,7 @@ public enum ErrorCode {
   WARD_NOT_REFUND(WardNotRefundException.class),
 
   /**
-   * Indicates that the guardian of a person is the person itself.
+   * 表示一个人的监护人是他自己。
    */
   GUARDIAN_IS_SELF(GuardianIsSelfException.class),
 
@@ -337,47 +334,47 @@ public enum ErrorCode {
   GUARDIAN_IS_REFUNDING(GuardianRefundingException.class),
 
   /**
-   * Indicates that a HTTP request error occurred.
+   * 表示发生了HTTP请求错误。
    */
   HTTP_ERROR(RestClientException.class),
 
   /**
-   * Indicates that the entity is marked as inactive.
+   * 表示实体被标记为非活动状态。
    */
   INACTIVE(EntityInactiveException.class),
 
   /**
-   * Indicates an internal error occurs, which is usually caused by the bug.
+   * 表示发生内部错误，通常由程序缺陷引起。
    */
   INTERNAL_ERROR(Exception.class),
 
   /**
-   * Indicates that the value of an enumeration is invalid.
+   * 表示枚举值无效。
    */
   INVALID_ENUM_VALUE(InvalidEnumValueException.class),
 
   /**
-   * Indicates that the format of the email is invalid.
+   * 表示电子邮件的格式无效。
    */
   INVALID_EMAIL_FORMAT(InvalidFieldFormatException.class),
 
   /**
-   * Indicates that the format of a field is invalid.
+   * 表示字段的格式无效。
    */
   INVALID_FIELD_FORMAT(InvalidFieldFormatException.class),
 
   /**
-   * Indicates that the value of a field is invalid.
+   * 表示字段值无效。
    */
   INVALID_FIELD_VALUE(InvalidFieldValueException.class),
 
   /**
-   * Indicates that the characters of the value of a field is invalid.
+   * 表示字段值的字符无效。
    */
   INVALID_FIELD_VALUE_CHARACTER(InvalidFieldValueCharacterException.class),
 
   /**
-   * Indicates that the format of a file is invalid.
+   * 表示文件格式无效。
    */
   INVALID_FILE_FORMAT(InvalidFileFormatException.class),
 
@@ -387,12 +384,12 @@ public enum ErrorCode {
   INVALID_GUARDIAN_AGE(InvalidGuardianAgeException.class),
 
   /**
-   * Indicates that the format of the identity card number is invalid.
+   * 表示身份证号码的格式无效。
    */
   INVALID_IDENTITY_CARD_FORMAT(InvalidIdentityCardFormatException.class),
 
   /**
-   * Indicates that the format of a json object is invalid.
+   * 表示JSON对象的格式无效。
    */
   INVALID_JSON_FORMAT(InvalidJsonFormatException.class),
 
@@ -407,12 +404,12 @@ public enum ErrorCode {
   INVALID_ORDER_CLIENT(InvalidOrderClientException.class),
 
   /**
-   * Indicates that the format of the password is invalid.
+   * 表示密码的格式无效。
    */
   INVALID_PASSWORD_FORMAT(InvalidPasswordFormatException.class),
 
   /**
-   * Indicates that the format of the phone number is invalid.
+   * 表示电话号码的格式无效。
    */
   INVALID_PHONE_FORMAT(InvalidFieldFormatException.class),
 
@@ -447,7 +444,7 @@ public enum ErrorCode {
   INVALID_STATUS(InvalidStatusException.class),
 
   /**
-   * Indicates that the app or user's access token is invalid.
+   * 表示应用或用户的访问令牌无效。
    */
   INVALID_TOKEN(InvalidAccessTokenException.class),
 
@@ -457,12 +454,12 @@ public enum ErrorCode {
   INVALID_TYPE(InvalidTypeException.class),
 
   /**
-   * Indicates that the format of the username is invalid.
+   * 表示用户名的格式无效。
    */
   INVALID_USERNAME_FORMAT(InvalidUsernameFormatException.class),
 
   /**
-   * Indicates that another I/O error occurred.
+   * 表示发生了其他I/O错误。
    */
   IO_ERROR(IOException.class),
 
@@ -473,24 +470,22 @@ public enum ErrorCode {
   // LIMITATION_REACHED(),
 
   /**
-   * Indicates that an entity was locked.
+   * 表示实体已被锁定。
    */
   LOCKED(EntityLockedException.class),
 
   /**
-   * Indicates that the operation cannot be performed until the user logged into
-   * the system.
+   * 表示该操作需要用户登录系统后才能执行。
    */
   LOGIN_REQUIRED(LoginRequiredException.class),
 
   /**
-   * Indicates that the operation cannot be performed until the current user
-   * logged out from the system.
+   * 表示该操作需要当前用户登出系统后才能执行。
    */
   LOGOUT_REQUIRED(LogoutRequiredException.class),
 
   /**
-   * Thrown to indicate that a user try to make a friend with himself.
+   * 用于指示用户尝试与自己成为好友。
    */
   MAKE_FRIEND_WITH_SELF(MakeFriendWithSelfException.class),
 
@@ -550,32 +545,32 @@ public enum ErrorCode {
   MISMATCH_ORGANIZATION(MismatchOrganizationException.class),
 
   /**
-   * Thrown to indicate that a product must be bought for the buyer himself.
+   * 用于指示产品必须由购买者本人购买。
    */
   MUST_BUY_FOR_SELF(MustBuyForSelfException.class),
 
   /**
-   * Indicates that there is no enough inventory of the product.
+   * 表示产品库存不足。
    */
   NO_ENOUGH_INVENTORY(NoEnoughInventoryException.class),
 
   /**
-   * Indicates that the current user has no privilege to perform the operation.
+   * 表示当前用户没有执行该操作的权限。
    */
   NO_PRIVILEGE(NoPrivilegeException.class),
 
   /**
-   * Indicates that the specified entity was not marked as deleted.
+   * 表示指定的实体未被标记为已删除。
    */
   NOT_DELETED(EntityNotDeletedException.class),
 
   /**
-   * Indicates that the specified entity does not exist.
+   * 表示指定的实体不存在。
    */
   NOT_EXIST(DataNotExistException.class),
 
   /**
-   * Indicates that the specified entity has not been bound.
+   * 表示指定的实体尚未绑定。
    */
   NOT_BOUND(NotBoundException.class),
 
@@ -585,32 +580,32 @@ public enum ErrorCode {
   NOT_PURCHASED(NotPurchasedException.class),
 
   /**
-   * Indicates that the specified entity has not been registered.
+   * 表示指定的实体尚未注册。
    */
   NOT_REGISTERED(NotRegisteredException.class),
 
   /**
-   * Indicates that the specified entity was obsoleted.
+   * 表示指定的实体已过时。
    */
   OBSOLETED(EntityObsoletedException.class),
 
   /**
-   * Indicates that the operation to be performed was forbidden by the system.
+   * 表示要执行的操作被系统禁止。
    */
   OPERATION_FORBIDDEN(OperationForbiddenException.class),
 
   /**
-   * Indicates that the operations are too frequent.
+   * 表示操作过于频繁。
    */
   OPERATION_TOO_FREQUENT(OperationTooFrequentException.class),
 
   /**
-   * Indicates that the opposite of a label is the label itself.
+   * 表示标签的反向是标签本身。
    */
   OPPOSITE_IS_SELF(OppositeIsSelfException.class),
 
   /**
-   * Indicates that the order has been expired.
+   * 表示订单已过期。
    */
   ORDER_EXPIRED(OrderExpiredException.class),
 
@@ -620,12 +615,12 @@ public enum ErrorCode {
   PAID_MONEY_MISMATCH(PaidMoneyMismatchException.class),
 
   /**
-   * Indicates that the parent of a label is the label itself.
+   * 表示标签的父级是标签本身。
    */
   PARENT_IS_SELF(ParentIsSelfException.class),
 
   /**
-   * Indicates that the password is mismatched.
+   * 表示密码不匹配。
    */
   PASSWORD_MISMATCH(PasswordMismatchException.class),
 
@@ -652,13 +647,12 @@ public enum ErrorCode {
   PRODUCT_CANNOT_RETURN(ProductCannotReturnException.class),
 
   /**
-   * Indicates that the specified entity was readonly and cannot be modified.
+   * 表示指定的实体是只读的，不能修改。
    */
   READONLY(ReadonlyEntityException.class),
 
   /**
-   * Indicates that an error is occurred while adding or updating an entity with
-   * a non-exist foreign key.
+   * 表示在添加或更新具有不存在外键的实体时发生错误。
    */
   REFER_TO_NON_EXIST_FOREIGN_KEY(ForeignKeyConstraintFailException.class),
 
@@ -673,13 +667,12 @@ public enum ErrorCode {
   RETURNED_PURCHASE_AGAIN(ReturnedPurchaseAgainException.class),
 
   /**
-   * Indicates that the entity has already been reviewed, and thus cannot be
-   * updated nor deleted.
+   * 表示实体已被审核，因此无法更新或删除。
    */
   REVIEWED(EntityReviewedException.class),
 
   /**
-   * Indicates that the security key is mismatched.
+   * 表示安全密钥不匹配。
    */
   SECURITY_KEY_MISMATCH(SecurityKeyMismatchException.class),
 
@@ -694,12 +687,12 @@ public enum ErrorCode {
   SELLING_HAS_END(SellingHasEndException.class),
 
   /**
-   * Indicates that failed to send an email.
+   * 表示发送电子邮件失败。
    */
   SEND_EMAIL_FAILED(SendEmailException.class),
 
   /**
-   * Indicates the failure of sending SMS.
+   * 表示发送短信失败。
    */
   SEND_SMS_FAILED(SendSmsException.class),
 
@@ -719,12 +712,12 @@ public enum ErrorCode {
   THIRD_PARTY_ACCESS_TOKEN_INVALID(ThirdPartyAccessTokenInvalidException.class),
 
   /**
-   * Indicates a serialization error.
+   * 表示序列化错误。
    */
   SERIALIZATION_ERROR(EntitySerializationException.class),
 
   /**
-   * Indicates that the session was expired.
+   * 表示会话已过期。
    */
   SESSION_EXPIRED(SessionExpiredException.class),
 
@@ -734,22 +727,22 @@ public enum ErrorCode {
   SIGN_MESSAGE_FAILED(SignMessageException.class),
 
   /**
-   * Indicates that the target of an operation is the current user himself.
+   * 表示操作的目标是当前用户本身。
    */
   TARGET_IS_SELF(TargetIsSelfException.class),
 
   /**
-   * Indicates that the token was expired.
+   * 表示令牌已过期。
    */
   TOKEN_EXPIRED(AccessTokenExpiredException.class),
 
   /**
-   * Indicates that the user login failed too many times.
+   * 表示用户登录失败次数过多。
    */
   TOO_MANY_LOGIN_FAILURES(TooManyLoginFailuresException.class),
 
   /**
-   * Indicates that the app authorize failed too many times.
+   * 表示应用授权失败次数过多。
    */
   TOO_MANY_AUTHENTICATION_FAILURES(TooManyAuthenticationFailuresException.class),
 
@@ -764,47 +757,47 @@ public enum ErrorCode {
   UNQUALIFIED_RENEWAL(UnqualifiedRenewalException.class),
 
   /**
-   * Indicates that the algorithm is not supported.
+   * 表示不支持该算法。
    */
   UNSUPPORTED_ALGORITHM(UnsupportedAlgorithmException.class),
 
   /**
-   * Indicates that the class is not supported.
+   * 表示不支持该类。
    */
   UNSUPPORTED_CLASS(UnsupportedClassException.class),
 
   /**
-   * Indicates that the content type is not supported.
+   * 表示不支持该内容类型。
    */
   UNSUPPORTED_CONTENT_TYPE(UnsupportedContentTypeException.class),
 
   /**
-   * Indicates that the file type is not supported.
+   * 表示不支持该文件类型。
    */
   UNSUPPORTED_FILE_TYPE(UnsupportedFileTypeException.class),
 
   /**
-   * Indicates that the specified version is not supported.
+   * 表示不支持指定的版本。
    */
   UNSUPPORTED_VERSION(UnsupportedVersionException.class),
 
   /**
-   * Indicates that the files to be uploaded is too large.
+   * 表示要上传的文件太大。
    */
   UPLOAD_FILE_TOO_LARGE(UploadFileTooLargeException.class),
 
   /**
-   * Indicates that the username was occupied.
+   * 表示用户名已被占用。
    */
   USERNAME_OCCUPIED(DuplicateKeyException.class),
 
   /**
-   * Indicates that the verification code has been expired.
+   * 表示验证码已过期。
    */
   VERIFY_CODE_EXPIRED(VerifyCodeExpiredException.class),
 
   /**
-   * Indicates that the verification code is matched.
+   * 表示验证码不匹配。
    */
   VERIFY_CODE_MISMATCH(VerifyCodeMismatchException.class),
 
@@ -813,12 +806,26 @@ public enum ErrorCode {
    */
   VERIFY_SIGNATURE_FAILED(VerifySignatureException.class);
 
+  /**
+   * 此错误码对应的异常类。
+   */
   private final Class<? extends Exception> exceptionClass;
 
+  /**
+   * 构造一个错误码。
+   * 
+   * @param exceptionClass
+   *     此错误码对应的异常类。
+   */
   ErrorCode(final Class<? extends Exception> exceptionClass) {
     this.exceptionClass = exceptionClass;
   }
 
+  /**
+   * 获取此错误码对应的异常类。
+   * 
+   * @return 此错误码对应的异常类。
+   */
   Class<? extends Exception> getExceptionClass() {
     return exceptionClass;
   }

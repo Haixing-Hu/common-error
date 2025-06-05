@@ -13,10 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * The exception thrown to indicate that the parent of an entity is the
- * entity itself.
+ * 表示实体的父级是其自身的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class ParentIsSelfException extends BusinessLogicException {
 
@@ -27,11 +26,31 @@ public class ParentIsSelfException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类型、键和值构造一个 {@link ParentIsSelfException} 对象。
+   *
+   * @param entityType
+   *     相关实体的类对象。
+   * @param key
+   *     用于标识实体的键的名称。
+   * @param value
+   *     用于标识实体的键的值。
+   */
   public ParentIsSelfException(final Class<?> entityType, final String key,
       final Object value) {
     this(getEntityName(entityType), getFieldName(key), value);
   }
 
+  /**
+   * 使用指定的实体名称、键和值构造一个 {@link ParentIsSelfException} 对象。
+   *
+   * @param entity
+   *     相关实体的名称。
+   * @param key
+   *     用于标识实体的键的名称。
+   * @param value
+   *     用于标识实体的键的值。
+   */
   public ParentIsSelfException(final String entity, final String key,
       final Object value) {
     super(ErrorCode.PARENT_IS_SELF,
@@ -43,14 +62,29 @@ public class ParentIsSelfException extends BusinessLogicException {
     this.value = value;
   }
 
+  /**
+   * 获取相关实体的名称。
+   *
+   * @return 相关实体的名称。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识实体的键的名称。
+   *
+   * @return 用于标识实体的键的名称。
+   */
   public String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识实体的键的值。
+   *
+   * @return 用于标识实体的键的值。
+   */
   public Object getValue() {
     return value;
   }

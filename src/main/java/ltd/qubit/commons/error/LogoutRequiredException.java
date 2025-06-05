@@ -11,15 +11,18 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * Indicates that the operation should be performed by anonymous users.
+ * 表示当前操作需要用户登出（即匿名用户）。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class LogoutRequiredException extends ServerSideException {
 
   @Serial
   private static final long serialVersionUID = -6379576131252730952L;
 
+  /**
+   * 构造一个 {@link LogoutRequiredException} 对象。
+   */
   public LogoutRequiredException() {
     super(ErrorType.AUTHENTICATION_ERROR, ErrorCode.LOGOUT_REQUIRED);
   }

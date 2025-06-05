@@ -22,20 +22,40 @@ public class EncodingMessageException extends ServerInternalException {
 
   private final String reason;
 
+  /**
+   * 构造一个 {@link EncodingMessageException} 对象。
+   */
   public EncodingMessageException() {
     this("");
   }
 
+  /**
+   * 使用指定的错误消息构造一个 {@link EncodingMessageException} 对象。
+   *
+   * @param message
+   *     描述编码错误的详细消息。
+   */
   public EncodingMessageException(final String message) {
     super(ErrorCode.ENCODING_MESSAGE_FAILED);
     this.reason = message;
     this.addParam("reason", message);
   }
 
+  /**
+   * 使用指定的根本原因构造一个 {@link EncodingMessageException} 对象。
+   *
+   * @param e
+   *     编码错误的根本原因。
+   */
   public EncodingMessageException(final Throwable e) {
     this(e.getMessage());
   }
 
+  /**
+   * 获取描述编码错误原因的字符串。
+   *
+   * @return 描述编码错误原因的字符串。
+   */
   public String getReason() {
     return reason;
   }

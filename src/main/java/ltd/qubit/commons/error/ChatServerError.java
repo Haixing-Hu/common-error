@@ -22,12 +22,23 @@ public class ChatServerError extends ServerSideException {
 
   private final String reason;
 
+  /**
+   * 使用指定的原因构造 {@link ChatServerError}。
+   *
+   * @param reason
+   *     导致此错误的原因。
+   */
   public ChatServerError(final String reason) {
     super(ErrorType.SERVER_ERROR, ErrorCode.CHAT_SERVER_ERROR);
     this.addParam("reason", reason);
     this.reason = reason;
   }
 
+  /**
+   * 获取导致此错误的原因。
+   *
+   * @return 导致此错误的原因。
+   */
   public String getReason() {
     return reason;
   }

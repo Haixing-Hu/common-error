@@ -11,9 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * Thrown to indicates the session has expired.
+ * 表示会话已过期的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class SessionExpiredException  extends ServerSideException {
 
@@ -23,10 +23,10 @@ public class SessionExpiredException  extends ServerSideException {
   private final String entity;
 
   /**
-   * Constructs a {@link SessionExpiredException} with the specified entity class.
+   * 使用指定的实体类构造一个 {@link SessionExpiredException} 对象。
    *
    * @param entityClass
-   *     the class of the entity whose session has expired.
+   *     会话已过期的实体的类对象。
    */
   public SessionExpiredException(final Class<?> entityClass) {
     super(ErrorType.AUTHENTICATION_ERROR, ErrorCode.SESSION_EXPIRED);
@@ -34,6 +34,11 @@ public class SessionExpiredException  extends ServerSideException {
     this.addParam("entity", this.entity);
   }
 
+  /**
+   * 获取会话已过期的实体的名称。
+   *
+   * @return 会话已过期的实体的名称。
+   */
   public String getEntity() {
     return entity;
   }

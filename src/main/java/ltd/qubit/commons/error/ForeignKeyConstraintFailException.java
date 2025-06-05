@@ -13,9 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.sql.DaoOperation;
 
 /**
- * Thrown to indicate the failure of a foreign key constraint.
+ * 表示外键约束失败的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class ForeignKeyConstraintFailException extends BusinessLogicException {
 
@@ -27,6 +27,19 @@ public class ForeignKeyConstraintFailException extends BusinessLogicException {
   private final String referenceEntity;
   private final String referenceField;
 
+  /**
+   * 使用指定的操作、属性、引用的实体和引用的字段构造一个
+   * {@link ForeignKeyConstraintFailException} 对象。
+   *
+   * @param operation
+   *     导致外键约束失败的DAO操作。
+   * @param property
+   *     外键字段的属性名称 (通常是 lowerCamelCase 格式)。
+   * @param referenceEntity
+   *     外键引用的实体名称。
+   * @param referenceField
+   *     外键引用的字段名称。
+   */
   public ForeignKeyConstraintFailException(final DaoOperation operation,
       final String property, final String referenceEntity,
       final String referenceField) {
@@ -51,18 +64,38 @@ public class ForeignKeyConstraintFailException extends BusinessLogicException {
     }
   }
 
+  /**
+   * 获取导致外键约束失败的DAO操作。
+   *
+   * @return 导致外键约束失败的DAO操作。
+   */
   public DaoOperation getOperation() {
     return operation;
   }
 
+  /**
+   * 获取外键字段的名称。
+   *
+   * @return 外键字段的名称 (通常是 lower_underscore 格式)。
+   */
   public String getField() {
     return field;
   }
 
+  /**
+   * 获取外键引用的实体名称。
+   *
+   * @return 外键引用的实体名称 (通常是 lower_underscore 格式)。
+   */
   public String getReferenceEntity() {
     return referenceEntity;
   }
 
+  /**
+   * 获取外键引用的字段名称。
+   *
+   * @return 外键引用的字段名称 (通常是 lower_underscore 格式)。
+   */
   public String getReferenceField() {
     return referenceField;
   }

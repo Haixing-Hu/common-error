@@ -17,9 +17,9 @@ import ltd.qubit.commons.lang.ObjectUtils;
 import ltd.qubit.model.contact.Phone;
 
 /**
- * The exception thrown when sending SMS failed.
+ * 表示发送短信失败的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class SendSmsException extends ThirdPartyServiceException {
 
@@ -35,15 +35,14 @@ public class SendSmsException extends ThirdPartyServiceException {
   private final String thirdPartyMessage;
 
   /**
-   * Constructs a {@link SendSmsException}.
+   * 构造一个 {@link SendSmsException} 对象。
    *
    * @param phone
-   *     the phone number.
+   *     目标电话号码。
    * @param thirdPartyCode
-   *     the error code returned by the third-party service.
+   *     第三方服务返回的错误代码。
    * @param thirdPartyMessage
-   *     the detailed error message describing the error returned by the
-   *     third-party service.
+   *     第三方服务返回的描述错误的详细错误消息。
    */
   public SendSmsException(final Phone phone, final String thirdPartyCode,
       final String thirdPartyMessage) {
@@ -51,15 +50,14 @@ public class SendSmsException extends ThirdPartyServiceException {
   }
 
   /**
-   * Constructs a {@link SendSmsException}.
+   * 构造一个 {@link SendSmsException} 对象。
    *
    * @param phones
-   *     the phone numbers.
+   *     目标电话号码列表。
    * @param thirdPartyCode
-   *     the error code returned by the third-party service.
+   *     第三方服务返回的错误代码。
    * @param thirdPartyMessage
-   *     the detailed error message describing the error returned by the
-   *     third-party service.
+   *     第三方服务返回的描述错误的详细错误消息。
    */
   public SendSmsException(final List<Phone> phones, final String thirdPartyCode,
       final String thirdPartyMessage) {
@@ -67,15 +65,16 @@ public class SendSmsException extends ThirdPartyServiceException {
   }
 
   /**
-   * Constructs a {@link SendSmsException}.
+   * 构造一个 {@link SendSmsException} 对象。
    *
    * @param phone
-   *     the phone number.
+   *     目标电话号码，可以为 null。
+   * @param phones
+   *     目标电话号码列表，可以为 null。
    * @param thirdPartyCode
-   *     the error code returned by the third-party service.
+   *     第三方服务返回的错误代码。
    * @param thirdPartyMessage
-   *     the detailed error message describing the error returned by the
-   *     third-party service.
+   *     第三方服务返回的描述错误的详细错误消息。
    */
   private SendSmsException(@Nullable final Phone phone, @Nullable final List<Phone> phones,
       final String thirdPartyCode, final String thirdPartyMessage) {
@@ -96,18 +95,38 @@ public class SendSmsException extends ThirdPartyServiceException {
     this.addParam("third_party_message", this.thirdPartyMessage);
   }
 
+  /**
+   * 获取目标电话号码（如果发送给单个号码）。
+   *
+   * @return 目标电话号码，如果发送给多个号码或未指定则返回 null。
+   */
   public Phone getPhone() {
     return phone;
   }
 
+  /**
+   * 获取目标电话号码列表（如果发送给多个号码）。
+   *
+   * @return 目标电话号码列表，如果发送给单个号码或未指定则返回 null。
+   */
   public List<Phone> getPhones() {
     return phones;
   }
 
+  /**
+   * 获取第三方服务返回的错误代码。
+   *
+   * @return 第三方服务返回的错误代码。
+   */
   public String getThirdPartyCode() {
     return thirdPartyCode;
   }
 
+  /**
+   * 获取第三方服务返回的详细错误消息。
+   *
+   * @return 第三方服务返回的详细错误消息。
+   */
   public String getThirdPartyMessage() {
     return thirdPartyMessage;
   }

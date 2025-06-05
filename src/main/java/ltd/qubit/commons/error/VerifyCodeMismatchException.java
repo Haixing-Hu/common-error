@@ -11,15 +11,18 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * An exception thrown to indicate the mismatch of verify code.
+ * 表示验证码不匹配的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class VerifyCodeMismatchException extends BusinessLogicException {
 
   @Serial
   private static final long serialVersionUID = -1767662246498278604L;
 
+  /**
+   * 构造一个 {@link VerifyCodeMismatchException} 对象。
+   */
   public VerifyCodeMismatchException() {
     super(ErrorCode.VERIFY_CODE_MISMATCH);
   }

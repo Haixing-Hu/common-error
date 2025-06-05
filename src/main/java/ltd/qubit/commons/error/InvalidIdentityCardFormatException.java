@@ -22,12 +22,23 @@ public class InvalidIdentityCardFormatException extends BusinessLogicException {
 
   private final String number;
 
+  /**
+   * 使用指定的身份证号码构造一个 {@link InvalidIdentityCardFormatException} 对象。
+   *
+   * @param number
+   *     格式错误的身份证号码。
+   */
   public InvalidIdentityCardFormatException(final String number) {
     super(ErrorCode.INVALID_IDENTITY_CARD_FORMAT);
     this.number = number;
     this.addParam("number", number);
   }
 
+  /**
+   * 获取格式错误的身份证号码。
+   *
+   * @return 格式错误的身份证号码。
+   */
   public String getNumber() {
     return number;
   }

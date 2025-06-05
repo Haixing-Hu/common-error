@@ -11,10 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * The exception thrown to indicate that the characters of the value of a field
- * is invalid.
+ * 表示字段值的字符无效的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class InvalidFieldValueCharacterException extends ServerSideException {
 
@@ -24,6 +23,15 @@ public class InvalidFieldValueCharacterException extends ServerSideException {
   private final String field;
   private final String value;
 
+  /**
+   * 使用指定的属性名称和无效值构造一个
+   * {@link InvalidFieldValueCharacterException} 对象。
+   *
+   * @param property
+   *     字符无效的字段的属性名称 (通常是 lowerCamelCase 格式)。
+   * @param value
+   *     包含无效字符的字段值。
+   */
   public InvalidFieldValueCharacterException(final String property, final String value) {
     super(ErrorType.REQUEST_ERROR, ErrorCode.INVALID_FIELD_VALUE_CHARACTER);
     this.field = getFieldName(property);
@@ -33,18 +41,18 @@ public class InvalidFieldValueCharacterException extends ServerSideException {
   }
 
   /**
-   * Gets the field.
+   * 获取字符无效的字段的名称。
    *
-   * @return the field.
+   * @return 字符无效的字段的名称 (通常是 lower_underscore 格式)。
    */
   public String getField() {
     return field;
   }
 
   /**
-   * Gets the value.
+   * 获取包含无效字符的字段值。
    *
-   * @return the value.
+   * @return 包含无效字符的字段值。
    */
   public String getValue() {
     return value;

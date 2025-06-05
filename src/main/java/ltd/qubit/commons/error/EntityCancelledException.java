@@ -15,9 +15,9 @@ import ltd.qubit.commons.reflect.impl.GetterMethod;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate an entity was marked as cancelled.
+ * 用于指示实体已被标记为已取消的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class EntityCancelledException extends BusinessLogicException {
 
@@ -28,17 +28,51 @@ public class EntityCancelledException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类、键和值构造一个 {@link EntityCancelledException} 对象。
+   *
+   * @param entityClass
+   *     被取消的实体的类对象。
+   * @param key
+   *     用于标识被取消实体的键的名称。
+   * @param value
+   *     用于标识被取消实体的键的值。
+   */
   public EntityCancelledException(final Class<?> entityClass,
       final String key, final Object value) {
     this(getEntityName(entityClass), key, value);
   }
 
+  /**
+   * 使用指定的实体类、对象和getter方法构造一个 {@link EntityCancelledException} 对象。
+   *
+   * @param entityClass
+   *     被取消的实体的类对象。
+   * @param object
+   *     被取消的实体对象。
+   * @param getter
+   *     用于从实体对象获取键值的getter方法。
+   * @param <T>
+   *     实体对象的类型。
+   * @param <R>
+   *     实体对象键值的类型。
+   */
   public <T, R> EntityCancelledException(final Class<T> entityClass,
       final T object, final GetterMethod<T, R> getter) {
     this(getEntityName(entityClass), FieldUtils.getFieldName(entityClass, getter),
         getter.invoke(object));
   }
 
+  /**
+   * 使用指定的实体名称、键和值构造一个 {@link EntityCancelledException} 对象。
+   *
+   * @param entity
+   *     被取消的实体的名称。
+   * @param key
+   *     用于标识被取消实体的键的名称。
+   * @param value
+   *     用于标识被取消实体的键的值。
+   */
   public EntityCancelledException(final String entity, final String key,
       final Object value) {
     super(ErrorCode.ENTITY_CANCELLED, new KeyValuePair("entity", entity),
@@ -49,14 +83,29 @@ public class EntityCancelledException extends BusinessLogicException {
     this.value = value;
   }
 
+  /**
+   * 获取被取消的实体的名称。
+   *
+   * @return 被取消的实体的名称。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识被取消实体的键的名称。
+   *
+   * @return 用于标识被取消实体的键的名称。
+   */
   public final String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识被取消实体的键的值。
+   *
+   * @return 用于标识被取消实体的键的值。
+   */
   public final Object getValue() {
     return value;
   }
