@@ -22,10 +22,28 @@ public class BusinessLogicException extends ServerSideException {
   @Serial
   private static final long serialVersionUID = 4119326191506464723L;
 
+  /**
+   * 使用指定的错误代码和参数构造一个 {@link BusinessLogicException} 对象。
+   *
+   * @param code
+   *     错误代码。
+   * @param params
+   *     与此错误相关的参数。
+   */
   public BusinessLogicException(final ErrorCode code, final KeyValuePair... params) {
     super(ErrorType.LOGIC_ERROR, code, params);
   }
 
+  /**
+   * 使用指定的错误类型、错误代码和参数构造一个 {@link BusinessLogicException} 对象。
+   *
+   * @param type
+   *     错误类型。
+   * @param code
+   *     错误代码。
+   * @param params
+   *     与此错误相关的参数。
+   */
   public BusinessLogicException(final ErrorType type, final ErrorCode code,
       final KeyValuePair... params) {
     super(type, code, params);

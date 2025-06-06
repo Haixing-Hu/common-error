@@ -11,9 +11,9 @@ package ltd.qubit.commons.error;
 import java.io.Serial;
 
 /**
- * Thrown to indicate that the current user blocks another user.
+ * 表示当前用户阻止另一个用户的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class BlockUserException extends BusinessLogicException {
 
@@ -22,12 +22,24 @@ public class BlockUserException extends BusinessLogicException {
 
   private final String username;
 
+  /**
+   * 构造一个 {@link BlockUserException} 对象。
+   *
+   * @param username
+   *     被阻止的用户的用户名。
+   */
   public BlockUserException(final String username) {
     super(ErrorCode.BLOCK_USER);
     this.username = username;
     this.addParam("username", username);
   }
 
+  /**
+   * 获取被阻止的用户的用户名。
+   *
+   * @return
+   *     被阻止的用户的用户名。
+   */
   public String getUsername() {
     return username;
   }

@@ -41,6 +41,12 @@ public class InvalidSignatureException extends BusinessLogicException {
     this.signature = signature;
   }
 
+  /**
+   * 获取签名无效的消息。
+   *
+   * @return
+   *     签名无效的消息。
+   */
   @Override
   public final String getMessage() {
     return message;

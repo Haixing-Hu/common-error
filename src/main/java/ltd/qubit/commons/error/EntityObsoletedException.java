@@ -13,9 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate an entity was marked as obsoleted.
+ * 表示实体已被标记为过时的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class EntityObsoletedException extends BusinessLogicException {
 
@@ -26,6 +26,16 @@ public class EntityObsoletedException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类型、键和值构造一个 {@link EntityObsoletedException} 对象。
+   *
+   * @param entityType
+   *     过时实体的类对象。
+   * @param key
+   *     用于标识过时实体的键的名称。
+   * @param value
+   *     用于标识过时实体的键的值。
+   */
   public EntityObsoletedException(final Class<?> entityType,
       final String key, final Object value) {
     this(getEntityName(entityType), getFieldName(key), value);
@@ -42,14 +52,32 @@ public class EntityObsoletedException extends BusinessLogicException {
     this.value = value;
   }
 
+  /**
+   * 获取过时实体的名称。
+   *
+   * @return
+   *     过时实体的名称。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识过时实体的键的名称。
+   *
+   * @return
+   *     用于标识过时实体的键的名称。
+   */
   public final String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识过时实体的键的值。
+   *
+   * @return
+   *     用于标识过时实体的键的值。
+   */
   public final Object getValue() {
     return value;
   }

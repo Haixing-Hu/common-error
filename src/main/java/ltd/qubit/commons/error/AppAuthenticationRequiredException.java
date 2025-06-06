@@ -17,6 +17,9 @@ public class AppAuthenticationRequiredException extends BusinessLogicException {
 
   private static final long serialVersionUID = 999001183481586466L;
 
+  /**
+   * 构造一个 {@link AppAuthenticationRequiredException} 对象。
+   */
   public AppAuthenticationRequiredException() {
     super(ErrorType.AUTHENTICATION_ERROR, ErrorCode.APP_AUTHENTICATION_REQUIRED);
   }

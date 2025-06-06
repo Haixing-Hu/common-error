@@ -13,10 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate the current logged-in user try to delete the user
- * of itself.
+ * 表示当前登录用户试图删除自己的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class DeleteCurrentUserException extends BusinessLogicException {
 
@@ -25,11 +24,23 @@ public class DeleteCurrentUserException extends BusinessLogicException {
 
   private final String username;
 
+  /**
+   * 构造一个 {@link DeleteCurrentUserException} 对象。
+   *
+   * @param username
+   *     当前登录用户的用户名。
+   */
   public DeleteCurrentUserException(final String username) {
     super(ErrorCode.DELETE_CURRENT_USER, new KeyValuePair("username", username));
     this.username = username;
   }
 
+  /**
+   * 获取当前登录用户的用户名。
+   *
+   * @return
+   *     当前登录用户的用户名。
+   */
   public String getUsername() {
     return username;
   }

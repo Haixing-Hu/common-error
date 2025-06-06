@@ -13,9 +13,9 @@ import java.io.Serial;
 import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
- * Thrown to indicate that the entity is not marked as deleted.
+ * 表示实体未被删除的异常。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class EntityNotDeletedException extends BusinessLogicException {
 
@@ -26,11 +26,31 @@ public class EntityNotDeletedException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类、键和值构造一个 {@link EntityNotDeletedException} 对象。
+   *
+   * @param entityType
+   *     未被删除的实体的类对象。
+   * @param key
+   *     用于标识未被删除的实体的键的名称。
+   * @param value
+   *     用于标识未被删除的实体的键的值。
+   */
   public EntityNotDeletedException(final Class<?> entityType, final String key,
       final Object value) {
     this(getEntityName(entityType), getFieldName(key), value);
   }
 
+  /**
+   * 使用指定的实体名称、键和值构造一个 {@link EntityNotDeletedException} 对象。
+   *
+   * @param entity
+   *     未被删除的实体的名称。
+   * @param key
+   *     用于标识未被删除的实体的键的名称。
+   * @param value
+   *     用于标识未被删除的实体的键的值。
+   */
   private EntityNotDeletedException(final String entity, final String key,
       final Object value) {
     super(ErrorCode.NOT_DELETED,
@@ -42,14 +62,29 @@ public class EntityNotDeletedException extends BusinessLogicException {
     this.value = value;
   }
 
+  /**
+   * 获取未被删除的实体的名称。
+   *
+   * @return 未被删除的实体的名称。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识未被删除的实体的键的名称。
+   *
+   * @return 用于标识未被删除的实体的键的名称。
+   */
   public final String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识未被删除的实体的键的值。
+   *
+   * @return 用于标识未被删除的实体的键的值。
+   */
   public final Object getValue() {
     return value;
   }

@@ -20,6 +20,9 @@ public class AppointmentCannotDeleteException extends BusinessLogicException {
   @Serial
   private static final long serialVersionUID = 3104633352054555682L;
 
+  /**
+   * 构造一个 {@link AppointmentCannotDeleteException} 对象。
+   */
   public AppointmentCannotDeleteException() {
     super(ErrorCode.APPOINTMENT_CANNOT_DELETE);
   }

@@ -22,12 +22,24 @@ public class BlockedByUserException extends BusinessLogicException {
 
   private final String username;
 
+  /**
+   * 构造一个 {@link BlockedByUserException} 对象。
+   *
+   * @param username
+   *     屏蔽当前用户的用户的用户名。
+   */
   public BlockedByUserException(final String username) {
     super(ErrorCode.BLOCKED_BY_USER);
     this.username = username;
     this.addParam("username", username);
   }
 
+  /**
+   * 获取屏蔽当前用户的用户的用户名。
+   *
+   * @return
+   *     屏蔽当前用户的用户的用户名。
+   */
   public String getUsername() {
     return username;
   }
