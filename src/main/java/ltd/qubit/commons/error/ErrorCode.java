@@ -51,17 +51,17 @@ public enum ErrorCode {
   ALREADY_EXIST(DataAlreadyExistException.class),
 
   /**
-   * 表示指定的实体已注册过，无法再次注册.
+   * 表示指定的实体已注册过，无法再次注册。
    */
   ALREADY_REGISTERED(AlreadyRegisteredException.class),
 
   /**
-   * 已退货。
+   * 表示指定的实体已经退货。
    */
   ALREADY_RETURNED(AlreadyReturnedException.class),
 
   /**
-   * 表示预约已生效不能被删除。
+   * 表示预约已生效，不能被删除。
    */
   APPOINTMENT_CANNOT_DELETE(AppointmentCannotDeleteException.class),
 
@@ -95,11 +95,10 @@ public enum ErrorCode {
    */
   CHAT_SERVER_ERROR(ChatServerError.class),
 
-  // /**
-  //  * Indicates that the complaint about an entity reported by a user has already
-  //  * existed.
-  //  */
-  // COMPLAINT_EXIST(ComplaintExistException.class),
+  /**
+   * 表示用户对某个实体的投诉已存在。
+   */
+  COMPLAINT_EXIST(ComplaintExistException.class),
 
   /**
    * 表示发生了数据库错误。
@@ -182,7 +181,7 @@ public enum ErrorCode {
   DIGEST_MESSAGE_FAILED(DigestMessageException.class),
 
   /**
-   * 购买者重复。
+   * 表示购买者重复。
    */
   DUPLICATE_BUYER(DuplicateBuyerException.class),
 
@@ -192,12 +191,12 @@ public enum ErrorCode {
   DUPLICATE_KEY(DuplicateKeyException.class),
 
   /**
-   * 商品重复。
+   * 表示商品重复。
    */
   DUPLICATE_PRODUCT(DuplicateProductException.class),
 
   /**
-   * 重复购买。
+   * 表示重复购买。
    */
   DUPLICATE_PURCHASE(DuplicatePurchaseException.class),
 
@@ -231,12 +230,10 @@ public enum ErrorCode {
    */
   ENTITY_FAILED(EntityFailedException.class),
 
-  // /**
-  //  * 表示快递系统调用失败。
-  //  * <p>
-  //  * FIXME: 没有对应异常类，这个错误代码在哪里用到？另外名称不够清晰。
-  //  */
-  // EXPRESS_GENERATE_FAILURE(ExpressGenerateFailureException.class),
+  /**
+   * 表示快递系统调用失败。
+   */
+  EXPRESS_GENERATE_FAILURE(ExpressGenerateFailureException.class),
 
   /**
    * 表示字段的值超出范围。
@@ -308,10 +305,10 @@ public enum ErrorCode {
    */
   FRIEND_EXIST(FriendExistException.class),
 
-  // /**
-  //  * Indicates that the friendship request already exist.
-  //  */
-  // FRIEND_REQUEST_EXIST(),
+  /**
+   * 表示好友请求已存在。
+   */
+  FRIEND_REQUEST_EXIST(FriendRequestExistException.class),
 
   /**
    * 表示被监护人未退款。
@@ -379,7 +376,7 @@ public enum ErrorCode {
   INVALID_FILE_FORMAT(InvalidFileFormatException.class),
 
   /**
-   * 监护人年龄错误。
+   * 表示监护人年龄错误。
    */
   INVALID_GUARDIAN_AGE(InvalidGuardianAgeException.class),
 
@@ -394,12 +391,12 @@ public enum ErrorCode {
   INVALID_JSON_FORMAT(InvalidJsonFormatException.class),
 
   /**
-   * 订单信息错误。
+   * 表示订单信息错误。
    */
   INVALID_ORDER(InvalidOrderException.class),
 
   /**
-   * 订单客户信息错误。
+   * 表示订单客户信息错误。
    */
   INVALID_ORDER_CLIENT(InvalidOrderClientException.class),
 
@@ -414,17 +411,17 @@ public enum ErrorCode {
   INVALID_PHONE_FORMAT(InvalidFieldFormatException.class),
 
   /**
-   * 产品价格错误。
+   * 表示产品价格错误。
    */
   INVALID_PRICE(InvalidPriceException.class),
 
   /**
-   * 产品数量错误错误。
+   * 表示产品数量错误。
    */
   INVALID_PRODUCT_COUNT(InvalidProductCountException.class),
 
   /**
-   * 退款金额错误。
+   * 表示退款金额错误。
    */
   INVALID_REFUNDABLE(InvalidRefundableException.class),
 
@@ -434,7 +431,7 @@ public enum ErrorCode {
   INVALID_SIGNATURE(InvalidSignatureException.class),
 
   /**
-   * SQL语法错误。
+   * 表示SQL语法错误。
    */
   INVALID_SQL_SYNTAX(InvalidSqlSyntaxException.class),
 
@@ -464,10 +461,9 @@ public enum ErrorCode {
   IO_ERROR(IOException.class),
 
   /**
-   * Indicates that the operation cannot be performed since the limitation of
-   * the system has been reached.
+   * 表示由于达到系统限制，无法执行该操作。
    */
-  // LIMITATION_REACHED(),
+  LIMITATION_REACHED(LimitationReachedException.class),
 
   /**
    * 表示实体已被锁定。
@@ -530,7 +526,7 @@ public enum ErrorCode {
   MISMATCH_MOBILE(MismatchMobileException.class),
 
   /**
-   * 支付信息不匹配。
+   * 表示支付信息不匹配。
    */
   MISMATCH_PAYMENT(MismatchPaymentException.class),
 
@@ -575,7 +571,7 @@ public enum ErrorCode {
   NOT_BOUND(NotBoundException.class),
 
   /**
-   * 未购买过。
+   * 表示未购买过。
    */
   NOT_PURCHASED(NotPurchasedException.class),
 
@@ -610,7 +606,7 @@ public enum ErrorCode {
   ORDER_EXPIRED(OrderExpiredException.class),
 
   /**
-   * 支付的款项不匹配。
+   * 表示支付的款项不匹配。
    */
   PAID_MONEY_MISMATCH(PaidMoneyMismatchException.class),
 
@@ -624,22 +620,20 @@ public enum ErrorCode {
    */
   PASSWORD_MISMATCH(PasswordMismatchException.class),
 
-  // /**
-  //  * 表示药房系统连接失败。
-  //  * <p>
-  //  * FIXME: 没有对应异常类，这个错误代码在哪里用到？另外名称不够清晰。
-  //  */
-  // PHARMACY_CLIENT_FAILURE(Phar),
-  //
-  // /**
-  //  * 表示处方订单不能退货。
-  //  */
-  // PRESCRIPTION_CANNOT_RETURN(Prescriptionca),
-  //
-  // /**
-  //  * 表示处方没有找到可供货药店。
-  //  */
-  // PRESCRIPTION_CANNOT_FIND_SELLER(PrescriptionCanot),
+  /**
+   * 表示药房系统连接失败。
+   */
+  PHARMACY_CLIENT_FAILURE(PharmacyClientFailureException.class),
+
+  /**
+   * 表示处方订单不能退货。
+   */
+  PRESCRIPTION_CANNOT_RETURN(PrescriptionCannotReturnException.class),
+
+  /**
+   * 表示处方没有找到可供货药店。
+   */
+  PRESCRIPTION_CANNOT_FIND_SELLER(PrescriptionCannotFindSellerException.class),
 
   /**
    * 表示产品不能被退货。
@@ -662,7 +656,7 @@ public enum ErrorCode {
   REQUEST_METHOD_NOT_SUPPORTED(Exception.class),
 
   /**
-   * 退货后再次重购。
+   * 表示退货后再次重购。
    */
   RETURNED_PURCHASE_AGAIN(ReturnedPurchaseAgainException.class),
 
@@ -746,10 +740,10 @@ public enum ErrorCode {
    */
   TOO_MANY_AUTHENTICATION_FAILURES(TooManyAuthenticationFailuresException.class),
 
-  // /**
-  //  * Indicates that the operation is unnecessary.
-  //  */
-  // UNNECESSARY_OPERATION(Unnecessary),
+  /**
+   * 表示该操作是不必要的。
+   */
+  UNNECESSARY_OPERATION(UnnecessaryOperationException.class),
 
   /**
    * 表示没有资格进行续保。
@@ -809,24 +803,24 @@ public enum ErrorCode {
   /**
    * 此错误码对应的异常类。
    */
-  private final Class<? extends Exception> exceptionClass;
+  private final Class<? extends Throwable> exceptionClass;
 
   /**
    * 构造一个错误码。
-   * 
+   *
    * @param exceptionClass
    *     此错误码对应的异常类。
    */
-  ErrorCode(final Class<? extends Exception> exceptionClass) {
+  ErrorCode(final Class<? extends Throwable> exceptionClass) {
     this.exceptionClass = exceptionClass;
   }
 
   /**
    * 获取此错误码对应的异常类。
-   * 
+   *
    * @return 此错误码对应的异常类。
    */
-  Class<? extends Exception> getExceptionClass() {
+  public Class<? extends Throwable> getExceptionClass() {
     return exceptionClass;
   }
 }
