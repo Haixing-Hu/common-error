@@ -10,6 +10,8 @@ package ltd.qubit.commons.error;
 
 import java.io.Serial;
 
+import ltd.qubit.commons.util.pair.KeyValuePair;
+
 /**
  * 表示文件格式无效的异常。
  *
@@ -35,10 +37,11 @@ public class InvalidFileFormatException extends ServerSideException {
    * @param reason
    *     描述文件格式无效原因的字符串。
    */
-  public InvalidFileFormatException(final String message) {
-    super(ErrorType.IO_ERROR, ErrorCode.INVALID_FILE_FORMAT);
-    this.reason = message;
-    this.addParam("reason", message);
+  public InvalidFileFormatException(final String reason) {
+    super(ErrorType.IO_ERROR,
+        ErrorCode.INVALID_FILE_FORMAT,
+        new KeyValuePair("reason", reason));
+    this.reason = reason;
   }
 
   /**
