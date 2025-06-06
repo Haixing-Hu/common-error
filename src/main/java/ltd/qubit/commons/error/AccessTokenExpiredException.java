@@ -15,7 +15,7 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
 /**
  * 表示应用的访问令牌已过期。
  *
- * @author Haixing Hu
+ * @author 胡海星
  */
 public class AccessTokenExpiredException extends BusinessLogicException {
 
@@ -25,6 +25,14 @@ public class AccessTokenExpiredException extends BusinessLogicException {
   private final String entity;
   private final String token;
 
+  /**
+   * 构造一个 {@link AccessTokenExpiredException}。
+   *
+   * @param entityType
+   *     拥有访问令牌的实体的类型。
+   * @param token
+   *     已过期的访问令牌。
+   */
   public AccessTokenExpiredException(final Class<?> entityType, final String token) {
     this(getEntityName(entityType), token);
   }
@@ -38,10 +46,22 @@ public class AccessTokenExpiredException extends BusinessLogicException {
     this.token = token;
   }
 
+  /**
+   * 获取拥有访问令牌的实体的名字。
+   *
+   * @return
+   *     拥有访问令牌的实体的名字。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取已过期的访问令牌。
+   *
+   * @return
+   *     已过期的访问令牌。
+   */
   public String getToken() {
     return token;
   }

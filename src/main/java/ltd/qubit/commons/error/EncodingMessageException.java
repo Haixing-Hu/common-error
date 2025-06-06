@@ -18,7 +18,7 @@ import java.io.Serial;
 public class EncodingMessageException extends ServerInternalException {
 
   @Serial
-  private static final long serialVersionUID = 8426242742998906287L;
+  private static final long serialVersionUID = 5922714183999391937L;
 
   private final String reason;
 
@@ -32,13 +32,13 @@ public class EncodingMessageException extends ServerInternalException {
   /**
    * 使用指定的错误消息构造一个 {@link EncodingMessageException} 对象。
    *
-   * @param message
+   * @param reason
    *     描述编码错误的详细消息。
    */
-  public EncodingMessageException(final String message) {
+  public EncodingMessageException(final String reason) {
     super(ErrorCode.ENCODING_MESSAGE_FAILED);
-    this.reason = message;
-    this.addParam("reason", message);
+    this.reason = reason;
+    this.addParam("reason", reason);
   }
 
   /**

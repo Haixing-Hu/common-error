@@ -14,13 +14,13 @@ import ltd.qubit.commons.util.pair.KeyValuePair;
 
 /**
  * 表示要修改的实体是只读的异常。
- * 
+ *
  * @author 胡海星
  */
 public class ReadonlyEntityException extends BusinessLogicException {
 
   @Serial
-  private static final long serialVersionUID = 5742840366996760375L;
+  private static final long serialVersionUID = 3902267037810657082L;
 
   private final String entity;
   private final String key;

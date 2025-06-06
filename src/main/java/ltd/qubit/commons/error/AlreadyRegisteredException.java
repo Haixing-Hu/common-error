@@ -28,11 +28,33 @@ public class AlreadyRegisteredException extends BusinessLogicException {
   private final String key;
   private final Object value;
 
+  /**
+   * 使用指定的实体类型、键和值构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param entityType
+   *     已注册实体的类对象。
+   * @param key
+   *     用于标识已注册实体的键的名称。
+   * @param value
+   *     用于标识已注册实体的键的值。
+   */
   public AlreadyRegisteredException(final Class<?> entityType,
       final String key, final Object value) {
     this(entityType, key, value, new KeyValuePair[0]);
   }
 
+  /**
+   * 使用指定的实体类型、键、值和附加参数构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param entityType
+   *     已注册实体的类对象。
+   * @param key
+   *     用于标识已注册实体的键的名称。
+   * @param value
+   *     用于标识已注册实体的键的值。
+   * @param params
+   *     与此异常相关的附加参数。
+   */
   public AlreadyRegisteredException(final Class<?> entityType, final String key,
       final Object value, final KeyValuePair... params) {
     super(ErrorCode.ALREADY_REGISTERED);
@@ -45,23 +67,79 @@ public class AlreadyRegisteredException extends BusinessLogicException {
     this.addParams(params);
   }
 
+  /**
+   * 使用指定的实体类型、键的 getter 方法和键值构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param entityType
+   *     已注册实体的类对象。
+   * @param keyGetter
+   *     用于从实体对象获取键值的 getter 方法。
+   * @param value
+   *     用于标识已注册实体的键的值。
+   * @param <T>
+   *     实体对象的类型。
+   * @param <P>
+   *     实体对象键值的类型。
+   */
   public <T, P> AlreadyRegisteredException(final Class<T> entityType,
       final GetterMethod<T, P> keyGetter, final P value) {
     this(entityType, FieldUtils.getFieldName(entityType, keyGetter), value, new KeyValuePair[0]);
   }
 
+  /**
+   * 使用指定的实体类型、键的 getter 方法、键值和附加参数构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param entityType
+   *     已注册实体的类对象。
+   * @param keyGetter
+   *     用于从实体对象获取键值的 getter 方法。
+   * @param value
+   *     用于标识已注册实体的键的值。
+   * @param params
+   *     与此异常相关的附加参数。
+   * @param <T>
+   *     实体对象的类型。
+   * @param <P>
+   *     实体对象键值的类型。
+   */
   public <T, P> AlreadyRegisteredException(final Class<T> entityType,
       final GetterMethod<T, P> keyGetter, final P value,
       final KeyValuePair... params) {
     this(entityType, FieldUtils.getFieldName(entityType, keyGetter), value, params);
   }
 
+  /**
+   * 使用指定的实体对象和键的 getter 方法构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param obj
+   *     已注册的实体对象。
+   * @param keyGetter
+   *     用于从实体对象获取键值的 getter 方法。
+   * @param <T>
+   *     实体对象的类型。
+   * @param <P>
+   *     实体对象键值的类型。
+   */
   @SuppressWarnings("unchecked")
   public <T, P> AlreadyRegisteredException(final T obj, final GetterMethod<T, P> keyGetter) {
     this(obj.getClass(), FieldUtils.getFieldName((Class<T>) obj.getClass(), keyGetter),
         keyGetter.invoke(obj), new KeyValuePair[0]);
   }
 
+  /**
+   * 使用指定的实体对象、键的 getter 方法和附加参数构造一个 {@link AlreadyRegisteredException} 对象。
+   *
+   * @param obj
+   *     已注册的实体对象。
+   * @param keyGetter
+   *     用于从实体对象获取键值的 getter 方法。
+   * @param params
+   *     与此异常相关的附加参数。
+   * @param <T>
+   *     实体对象的类型。
+   * @param <P>
+   *     实体对象键值的类型。
+   */
   @SuppressWarnings("unchecked")
   public <T, P> AlreadyRegisteredException(final T obj,
       final GetterMethod<T, P> keyGetter, final KeyValuePair... params) {
@@ -69,14 +147,29 @@ public class AlreadyRegisteredException extends BusinessLogicException {
         keyGetter.invoke(obj), params);
   }
 
+  /**
+   * 获取已注册实体的名称。
+   *
+   * @return 已注册实体的名称。
+   */
   public String getEntity() {
     return entity;
   }
 
+  /**
+   * 获取用于标识已注册实体的键的名称。
+   *
+   * @return 用于标识已注册实体的键的名称。
+   */
   public String getKey() {
     return key;
   }
 
+  /**
+   * 获取用于标识已注册实体的键的值。
+   *
+   * @return 用于标识已注册实体的键的值。
+   */
   public Object getValue() {
     return value;
   }

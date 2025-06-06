@@ -10,6 +10,8 @@ package ltd.qubit.commons.error;
 
 import java.io.Serial;
 
+import ltd.qubit.commons.util.pair.KeyValuePair;
+
 /**
  * 表示好友关系已存在的异常。
  *
@@ -29,9 +31,9 @@ public class FriendExistException extends BusinessLogicException {
    *     已存在的好友的名称。
    */
   public FriendExistException(final String friendName) {
-    super(ErrorCode.FRIEND_EXIST);
+    super(ErrorCode.FRIEND_EXIST,
+        new KeyValuePair("friend_name", friendName));
     this.friendName = friendName;
-    this.addParam("field_name", friendName);
   }
 
   /**
